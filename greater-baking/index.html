@@ -151,7 +151,7 @@
 
   /* ---------- Visit / hours ---------- */
   #visit .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
-  .info-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.8rem}
+  .info-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.8rem;overflow-wrap:anywhere}
   .info-card h3{font-size:1.25rem;margin-bottom:1rem}
   .hours-row{display:flex;justify-content:space-between;padding:.55rem 0;border-bottom:1px dashed var(--cream-dark);font-size:.97rem}
   .hours-row:last-child{border-bottom:0}
@@ -173,7 +173,7 @@
   /* ---------- Responsive ---------- */
   @media (max-width:860px){
     .hero-inner{grid-template-columns:1fr}
-    .story-grid,.visit-grid{grid-template-columns:1fr}
+    .story-grid,#visit .visit-grid{grid-template-columns:1fr}
     .hamburger{display:block}
     .nav-links{
       display:none;position:absolute;top:100%;left:0;right:0;
