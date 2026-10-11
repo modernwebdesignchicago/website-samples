@@ -412,6 +412,11 @@
           <input type="tel" id="fPhone" name="phone" autocomplete="tel" placeholder="(312) 555-0100">
           <span class="err">Please enter a valid phone number.</span>
         </div>
+        <div class="field" data-field="email">
+          <label for="fEmail">Email (optional)</label>
+          <input type="email" id="fEmail" name="email" autocomplete="email" placeholder="you@example.com">
+          <span class="err">Please enter a valid email, or leave it blank.</span>
+        </div>
         <div class="field" data-field="service">
           <label for="fService">Service needed <span class="req">*</span></label>
           <select id="fService" name="service">
@@ -592,12 +597,14 @@
 
     var name = document.getElementById('fName').value.trim();
     var phone = document.getElementById('fPhone').value.trim();
+    var email = document.getElementById('fEmail').value.trim();
     var service = document.getElementById('fService').value;
     var urgency = form.querySelector('input[name="urgency"]:checked');
 
     var ok = true;
     ok = setInvalid('name', name.length < 2) && ok;
     ok = setInvalid('phone', !validPhone(phone)) && ok;
+    ok = setInvalid('email', email !== '' && !/.+@.+\..+/.test(email)) && ok;
     ok = setInvalid('service', service === '') && ok;
     ok = setInvalid('urgency', !urgency) && ok;
 
@@ -631,10 +638,16 @@
         _honey: honey ? honey.value : '',
         name: name,
         phone: phone,
+        email: email,
         service: serviceLabel,
         urgency: urgencyLabel
       })
-    }).then(function(res){ if (!res.ok) { throw new Error('send failed'); } return res.json(); }).then(function(){
+    }).then(function(res){
+      if (!res.ok) { throw new Error('send failed'); }
+      return res.json();
+    }).then(function(data){
+      if (!data || !data.success || data.success === 'false' || data.success === false) { throw new Error('submission held'); }
+    }).then(function(){
       successMsg.textContent = 'Thanks, ' + name + '. We\u2019ll call ' + phone +
         ' ' + urgencyLabel + ' about your ' + serviceLabel.toLowerCase() + '. ' +
         'In a real hurry? Call (312) 555-0147 now.';
