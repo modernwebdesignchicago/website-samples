@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spoke &amp; Sprocket | Bike Repair &amp; Rentals, Near North Chicago</title>
+<meta name="description" content="Spoke &amp; Sprocket: no-nonsense bike repair, tune-ups, and rentals in Chicago's Near North. Fictional demo mockup.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#161618;
+    --bg2:#1e1e21;
+    --bg3:#26262a;
+    --red:#e0282c;
+    --red-dark:#a8161a;
+    --steel:#8b8b90;
+    --light:#f2f2f0;
+    --muted:#b9b9bd;
+    --line:#333338;
+    --radius:10px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--light);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.02em;line-height:1.1}
+  a{color:inherit}
+  img{max-width:100%;display:block}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+  /* ---------- diagonal texture strip ---------- */
+  .stripes{
+    background:repeating-linear-gradient(-45deg,var(--red) 0 14px,transparent 14px 28px);
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(18,18,20,.96);
+    border-bottom:2px solid var(--red);
+    backdrop-filter:blur(6px);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+  .logo-mark{
+    width:40px;height:40px;background:var(--red);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Oswald',sans-serif;font-weight:700;font-size:20px;
+    clip-path:polygon(0 0,100% 0,100% 78%,78% 100%,0 100%);
+  }
+  .logo-name{font-family:'Oswald',sans-serif;font-weight:700;font-size:22px;text-transform:uppercase;letter-spacing:.03em}
+  .logo-name span{color:var(--red)}
+  .nav-links{display:flex;gap:28px;list-style:none}
+  .nav-links a{
+    text-decoration:none;font-weight:600;font-size:14px;text-transform:uppercase;letter-spacing:.06em;
+    color:var(--muted);transition:color .15s;
+  }
+  .nav-links a:hover{color:var(--red)}
+  .nav-cta{
+    text-decoration:none;background:var(--red);color:#fff;font-weight:700;font-size:14px;
+    padding:10px 20px;border-radius:6px;text-transform:uppercase;letter-spacing:.05em;
+    transition:background .15s;
+  }
+  .nav-cta:hover{background:var(--red-dark)}
+  .hamburger{
+    display:none;background:none;border:0;cursor:pointer;padding:8px;
+  }
+  .hamburger span{display:block;width:26px;height:3px;background:var(--light);margin:5px 0;transition:transform .2s,opacity .2s}
+  .hamburger.open span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+  .hamburger.open span:nth-child(2){opacity:0}
+  .hamburger.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+  .mobile-menu{display:none;flex-direction:column;background:var(--bg2);border-top:1px solid var(--line)}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{
+    text-decoration:none;padding:14px 20px;border-bottom:1px solid var(--line);
+    font-weight:600;text-transform:uppercase;font-size:14px;letter-spacing:.06em;color:var(--muted);
+  }
+  .mobile-menu a:hover{color:var(--red);background:var(--bg3)}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;padding:110px 0 90px;overflow:hidden;
+    background:
+      linear-gradient(180deg,rgba(18,18,20,.72),rgba(18,18,20,.94)),
+      repeating-linear-gradient(-45deg,#202024 0 18px,#19191d 18px 36px);
+  }
+  .hero .wrap{position:relative}
+  .hero-kicker{
+    display:inline-block;background:var(--red);color:#fff;font-weight:700;font-size:13px;
+    text-transform:uppercase;letter-spacing:.12em;padding:6px 14px;margin-bottom:18px;
+    clip-path:polygon(0 0,100% 0,calc(100% - 10px) 100%,0 100%);
+  }
+  .hero h1{font-size:clamp(44px,8vw,92px);font-weight:700;margin-bottom:16px}
+  .hero h1 .red{color:var(--red)}
+  .hero p.lede{font-size:clamp(16px,2.4vw,20px);color:var(--muted);max-width:620px;margin-bottom:30px}
+  .hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{
+    display:inline-block;text-decoration:none;font-weight:700;font-size:15px;text-transform:uppercase;
+    letter-spacing:.06em;padding:14px 30px;border-radius:6px;transition:transform .12s,background .15s;
+    border:2px solid transparent;cursor:pointer;
+  }
+  .btn:active{transform:scale(.97)}
+  .btn-red{background:var(--red);color:#fff}
+  .btn-red:hover{background:var(--red-dark)}
+  .btn-ghost{border-color:var(--steel);color:var(--light)}
+  .btn-ghost:hover{border-color:var(--red);color:var(--red)}
+  .hero-stats{display:flex;gap:40px;margin-top:46px;flex-wrap:wrap}
+  .hero-stats .stat b{display:block;font-family:'Oswald',sans-serif;font-size:34px;color:var(--red)}
+  .hero-stats .stat span{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+
+  /* ---------- sections ---------- */
+  section{padding:76px 0}
+  section.alt{background:var(--bg2)}
+  .sec-head{margin-bottom:40px}
+  .sec-kicker{
+    display:inline-block;color:var(--red);font-weight:700;font-size:13px;text-transform:uppercase;
+    letter-spacing:.14em;margin-bottom:8px;
+  }
+  .sec-head h2{font-size:clamp(30px,5vw,48px);margin-bottom:10px}
+  .sec-head p{color:var(--muted);max-width:640px}
+
+  /* ---------- price list ---------- */
+  .price-list{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--bg3)}
+  .price-row{
+    display:flex;align-items:baseline;justify-content:space-between;gap:16px;
+    padding:16px 22px;border-bottom:1px solid var(--line);
+  }
+  .price-row:last-child{border-bottom:0}
+  .price-row:nth-child(even){background:rgba(255,255,255,.02)}
+  .price-name{font-weight:600}
+  .price-name small{display:block;color:var(--muted);font-weight:400;font-size:13px}
+  .price-amt{
+    font-family:'Oswald',sans-serif;font-weight:600;font-size:20px;color:var(--red);
+    white-space:nowrap;
+  }
+  .price-note{color:var(--muted);font-size:13px;margin-top:14px}
+
+  /* ---------- tune-up tiers ---------- */
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+  .tier{
+    background:var(--bg3);border:1px solid var(--line);border-radius:var(--radius);
+    padding:30px 26px;display:flex;flex-direction:column;position:relative;
+  }
+  .tier.featured{border:2px solid var(--red);transform:translateY(-8px)}
+  .tier-badge{
+    position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+    background:var(--red);color:#fff;font-size:12px;font-weight:700;text-transform:uppercase;
+    letter-spacing:.1em;padding:4px 14px;border-radius:4px;white-space:nowrap;
+  }
+  .tier h3{font-size:26px;margin-bottom:4px}
+  .tier .tier-price{font-family:'Oswald',sans-serif;font-size:44px;font-weight:700;color:var(--red);margin:8px 0 4px}
+  .tier .tier-sub{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+  .tier ul{list-style:none;margin-bottom:24px;flex:1}
+  .tier li{padding:8px 0 8px 26px;position:relative;border-bottom:1px dashed var(--line);font-size:15px}
+  .tier li:last-child{border-bottom:0}
+  .tier li::before{content:"✕";color:var(--red);position:absolute;left:2px;font-weight:700}
+  .tier .btn{text-align:center;margin-top:auto}
+
+  /* ---------- rentals ---------- */
+  .rent-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .rent-card{background:var(--bg3);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+  .rent-icon{
+    width:52px;height:52px;border-radius:8px;background:var(--red);display:flex;align-items:center;
+    justify-content:center;font-size:26px;margin-bottom:16px;
+  }
+  .rent-card h3{font-size:22px;margin-bottom:8px}
+  .rent-card p{color:var(--muted);font-size:15px;margin-bottom:14px}
+  .rent-price{font-family:'Oswald',sans-serif;font-size:26px;font-weight:600}
+  .rent-price small{font-family:'Inter',sans-serif;font-size:13px;color:var(--muted)}
+  .rent-note{
+    margin-top:26px;background:var(--bg3);border-left:4px solid var(--red);
+    padding:18px 22px;border-radius:0 8px 8px 0;color:var(--muted);font-size:15px;
+  }
+  .rent-note strong{color:var(--light)}
+
+  /* ---------- story ---------- */
+  .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+  .story-copy p{margin-bottom:16px;color:#d8d8da}
+  .story-copy p strong{color:#fff}
+  .story-copy .quote{
+    border-left:4px solid var(--red);padding:14px 20px;margin:24px 0;
+    font-family:'Oswald',sans-serif;font-size:22px;text-transform:uppercase;letter-spacing:.02em;color:#fff;
+  }
+  .story-facts{display:flex;flex-direction:column;gap:14px}
+  .fact{
+    background:var(--bg3);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px 22px;display:flex;gap:16px;align-items:flex-start;
+  }
+  .fact-num{font-family:'Oswald',sans-serif;font-size:32px;font-weight:700;color:var(--red);line-height:1;min-width:56px}
+  .fact div p{color:var(--muted);font-size:15px}
+  .fact div b{display:block;font-size:16px;margin-bottom:2px}
+
+  /* ---------- form ---------- */
+  .form-shell{
+    background:var(--bg3);border:1px solid var(--line);border-radius:var(--radius);
+    padding:36px;max-width:760px;
+  }
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+  .field{display:flex;flex-direction:column;gap:6px}
+  .field.full{grid-column:1/-1}
+  .field label{font-weight:600;font-size:14px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+  .field input,.field select,.field textarea{
+    background:var(--bg2);border:1px solid var(--line);border-radius:6px;color:var(--light);
+    padding:12px 14px;font-size:16px;font-family:inherit;width:100%;
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{
+    outline:2px solid var(--red);border-color:var(--red);
+  }
+  .field textarea{min-height:120px;resize:vertical}
+  .field .error-msg{display:none;color:#ff6b6e;font-size:13px;font-weight:600}
+  .field.invalid .error-msg{display:block}
+  .field.invalid input,.field.invalid select,.field.invalid textarea{border-color:#ff6b6e}
+  #form-success{
+    display:none;background:#10251a;border:1px solid #1e7a3c;border-radius:var(--radius);
+    padding:28px;text-align:center;max-width:760px;
+  }
+  #form-success.show{display:block}
+  #form-success h3{font-size:28px;margin-bottom:10px;color:#4ade80}
+  #form-success p{color:#d8d8da}
+
+  /* ---------- hours / location ---------- */
+  .hl-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .hl-card{background:var(--bg3);border:1px solid var(--line);border-radius:var(--radius);padding:30px}
+  .hl-card h3{font-size:24px;margin-bottom:16px;color:var(--red)}
+  .hours-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed var(--line);font-size:15px}
+  .hours-row:last-child{border-bottom:0}
+  .hours-row.today{background:rgba(224,40,44,.08);margin:0 -12px;padding:10px 12px;border-radius:6px;font-weight:700}
+  .hl-card address{font-style:normal;color:#d8d8da;font-size:17px;line-height:1.8}
+  .hl-card .phone-big{font-family:'Oswald',sans-serif;font-size:32px;font-weight:700;color:#fff;text-decoration:none;display:inline-block;margin:12px 0}
+  .hl-card .phone-big:hover{color:var(--red)}
+  .hl-card .map-link{color:var(--red);font-weight:600;text-decoration:none}
+  .hl-card .map-link:hover{text-decoration:underline}
+
+  /* ---------- footer ---------- */
+  footer{background:#0e0e10;border-top:2px solid var(--red);padding:44px 0 100px}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px;margin-bottom:30px}
+  .foot-grid h4{font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:16px;margin-bottom:12px;color:var(--red)}
+  .foot-grid ul{list-style:none}
+  .foot-grid li{margin-bottom:8px}
+  .foot-grid a{text-decoration:none;color:var(--muted);font-size:14px}
+  .foot-grid a:hover{color:#fff}
+  .foot-brand{color:var(--muted);font-size:14px;max-width:320px}
+  .foot-brand .logo-name{font-size:20px;display:inline-block;margin-bottom:8px}
+  .fineprint{border-top:1px solid var(--line);padding-top:20px;color:var(--steel);font-size:13px}
+  .fineprint .demo{color:var(--red);font-weight:600}
+
+  /* ---------- mobile sticky call bar ---------- */
+  .sticky-call{
+    display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;
+    background:var(--red);color:#fff;text-decoration:none;
+    font-family:'Oswald',sans-serif;font-weight:700;font-size:19px;text-transform:uppercase;letter-spacing:.05em;
+    text-align:center;padding:15px 10px;
+  }
+  .sticky-call:hover{background:var(--red-dark)}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:860px){
+    .logo-name{font-size:18px}
+    .nav-links,.nav-cta{display:none}
+    .hamburger{display:block}
+    .tiers,.rent-grid,.story-grid,.hl-grid{grid-template-columns:1fr}
+    .tier.featured{transform:none}
+    .form-grid{grid-template-columns:1fr}
+    .form-shell{padding:24px}
+    section{padding:56px 0}
+    .hero{padding:80px 0 64px}
+    .foot-grid{grid-template-columns:1fr}
+    .sticky-call{display:block}
+    footer{padding-bottom:130px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="wrap nav">
+    <!-- CMS-EDITABLE: site logo / business name -->
+    <a class="logo" href="#top" aria-label="Spoke &amp; Sprocket home">
+      <span class="logo-mark">S</span>
+      <span class="logo-name">Spoke &amp; <span>Sprocket</span></span>
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="#repairs">Repairs</a></li>
+        <li><a href="#tuneups">Tune-Ups</a></li>
+        <li><a href="#rentals">Rentals</a></li>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#visit">Visit</a></li>
+      </ul>
+    </nav>
+    <!-- CMS-EDITABLE: header CTA phone -->
+    <a class="nav-cta" href="tel:+13125550147">Call (312) 555-0147</a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+    <a href="#repairs">Repairs</a>
+    <a href="#tuneups">Tune-Ups</a>
+    <a href="#rentals">Rentals</a>
+    <a href="#story">Our Story</a>
+    <a href="#visit">Visit</a>
+    <!-- CMS-EDITABLE: mobile menu phone -->
+    <a href="tel:+13125550147">Call (312) 555-0147</a>
+  </nav>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top" style="padding-top:110px;padding-bottom:90px">
+  <div class="wrap">
+    <!-- CMS-EDITABLE: hero copy -->
+    <span class="hero-kicker">Near North Chicago &middot; Walk-ins welcome</span>
+    <h1>Your bike's broken.<br><span class="red">We fix it. Fast.</span></h1>
+    <p class="lede">No lectures, no upsells, no three-week wait. Spoke &amp; Sprocket is a no-nonsense repair shop for riders who'd rather be riding. Drop it off, grab a coffee, pick up a bike that actually shifts.</p>
+    <div class="hero-btns">
+      <a class="btn btn-red" href="#dropoff">Book a Repair</a>
+      <a class="btn btn-ghost" href="#repairs">See Price List</a>
+    </div>
+    <div class="hero-stats">
+      <!-- CMS-EDITABLE: hero stats -->
+      <div class="stat"><b>24 hrs</b><span>typical turnaround</span></div>
+      <div class="stat"><b>15 yrs</b><span>wrenching in Chicago</span></div>
+      <div class="stat"><b>4.9 ★</b><span>from 600+ riders</span></div>
+    </div>
+  </div>
+</section>
+<div class="stripes" style="height:8px"></div>
+
+<!-- ================= REPAIRS ================= -->
+<section id="repairs">
+  <div class="wrap">
+    <div class="sec-head">
+      <!-- CMS-EDITABLE: repairs section intro -->
+      <span class="sec-kicker">Repairs</span>
+      <h2>Published prices. No surprises.</h2>
+      <p>Every job below is a flat rate. Parts at cost, labor on the board. If we find something extra, we call you before we touch it. That's the whole policy.</p>
+    </div>
+    <!-- CMS-EDITABLE: repair price list -->
+    <div class="price-list">
+      <div class="price-row"><div class="price-name">Flat tire fix<small>Tube + labor, most wheel sizes</small></div><div class="price-amt">$18</div></div>
+      <div class="price-row"><div class="price-name">Brake adjust<small>Pad alignment, cable tension, lever feel</small></div><div class="price-amt">$25</div></div>
+      <div class="price-row"><div class="price-name">Brake bleed (hydraulic)<small>Per brake, includes fluid</small></div><div class="price-amt">$35</div></div>
+      <div class="price-row"><div class="price-name">Gear / derailleur adjust<small>Indexing, limit screws, cable swap if needed</small></div><div class="price-amt">$25</div></div>
+      <div class="price-row"><div class="price-name">Wheel true<small>Per wheel, in the stand</small></div><div class="price-amt">$20</div></div>
+      <div class="price-row"><div class="price-name">Chain replacement<small>Includes chain, sized and fitted</small></div><div class="price-amt">$30</div></div>
+      <div class="price-row"><div class="price-name">Bottom bracket service<small>Remove, clean, regrease, reinstall</small></div><div class="price-amt">$40</div></div>
+      <div class="price-row"><div class="price-name">Full drivetrain deep-clean<small>Off-bike ultrasonic clean + lube</small></div><div class="price-amt">$55</div></div>
+      <div class="price-row"><div class="price-name">E-bike diagnostic<small>Motor, battery, and controller check</small></div><div class="price-amt">$45</div></div>
+      <div class="price-row"><div class="price-name">Bike build / box assembly<small>From the box to ride-ready</small></div><div class="price-amt">$75</div></div>
+    </div>
+    <p class="price-note">Prices are labor unless noted. Parts billed at our cost. We'll show you the receipt if you ask. Most repairs done same-day.</p>
+  </div>
+</section>
+
+<!-- ================= TUNE-UPS ================= -->
+<section class="alt" id="tuneups">
+  <div class="wrap">
+    <div class="sec-head">
+      <!-- CMS-EDITABLE: tune-up section intro -->
+      <span class="sec-kicker">Tune-Up Packages</span>
+      <h2>Pick the package that fits your bike.</h2>
+      <p>Three packages, zero mystery. Every tune-up starts with a free 21-point inspection. You approve the package. We do the work.</p>
+    </div>
+    <!-- CMS-EDITABLE: tune-up tiers -->
+    <div class="tiers">
+      <div class="tier">
+        <h3>The Quick Hit</h3>
+        <div class="tier-price">$59</div>
+        <div class="tier-sub">Safety check &amp; basic tune</div>
+        <ul>
+          <li>21-point safety inspection</li>
+          <li>Brake &amp; gear adjustment</li>
+          <li>Tire pressure &amp; wear check</li>
+          <li>Bolt torque check</li>
+          <li>Chain lube</li>
+        </ul>
+        <a class="btn btn-ghost" href="#dropoff">Book Quick Hit</a>
+      </div>
+      <div class="tier featured">
+        <span class="tier-badge">Most popular</span>
+        <h3>The Full Monty</h3>
+        <div class="tier-price">$129</div>
+        <div class="tier-sub">Complete overhaul tune</div>
+        <ul>
+          <li>Everything in Quick Hit</li>
+          <li>Wheel truing (front &amp; rear)</li>
+          <li>Drivetrain deep-clean &amp; lube</li>
+          <li>Hub &amp; headset adjustment</li>
+          <li>New cables &amp; housing</li>
+          <li>Test ride by a mechanic</li>
+        </ul>
+        <a class="btn btn-red" href="#dropoff">Book Full Monty</a>
+      </div>
+      <div class="tier">
+        <h3>The Frame-Off</h3>
+        <div class="tier-price">$249</div>
+        <div class="tier-sub">Strip-down rebuild</div>
+        <ul>
+          <li>Everything in Full Monty</li>
+          <li>Full strip to the frame</li>
+          <li>Frame &amp; fork detail</li>
+          <li>Bearings cleaned &amp; repacked</li>
+          <li>New bar tape or grips</li>
+          <li>Priority 48-hour turnaround</li>
+        </ul>
+        <a class="btn btn-ghost" href="#dropoff">Book Frame-Off</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RENTALS ================= -->
+<section id="rentals">
+  <div class="wrap">
+    <div class="sec-head">
+      <!-- CMS-EDITABLE: rentals section intro -->
+      <span class="sec-kicker">Rentals</span>
+      <h2>Need wheels today?</h2>
+      <p>Our rental fleet is maintained like our own bikes, because it is. Helmet and lock included with every rental, always.</p>
+    </div>
+    <!-- CMS-EDITABLE: rental fleet -->
+    <div class="rent-grid">
+      <div class="rent-card">
+        <div class="rent-icon" aria-hidden="true">🚲</div>
+        <h3>City Cruiser</h3>
+        <p>Upright, comfy, 7-speed. Perfect for the Lakefront Trail and brewery runs.</p>
+        <div class="rent-price">$25 <small>/ day &middot; $90 / week</small></div>
+      </div>
+      <div class="rent-card">
+        <div class="rent-icon" aria-hidden="true">⚡</div>
+        <h3>E-Bike</h3>
+        <p>Pedal-assist up to 20 mph. Flatten every hill from River North to Wrigley.</p>
+        <div class="rent-price">$55 <small>/ day &middot; $200 / week</small></div>
+      </div>
+      <div class="rent-card">
+        <div class="rent-icon" aria-hidden="true">🏁</div>
+        <h3>Road / Gravel</h3>
+        <p>Carbon or steel, your pick. Tuned before every single rental, guaranteed.</p>
+        <div class="rent-price">$45 <small>/ day &middot; $160 / week</small></div>
+      </div>
+    </div>
+    <div class="rent-note">
+      <!-- CMS-EDITABLE: rental policy note -->
+      <strong>Rental rules, short version:</strong> 18+ with ID. $200 refundable deposit on e-bikes. Bring it back in one piece and you get the deposit back. Scuffs from normal riding don't count. Multi-day and group discounts available; ask in the shop.
+    </div>
+  </div>
+</section>
+
+<!-- ================= STORY ================= -->
+<section class="alt" id="story">
+  <div class="wrap">
+    <div class="sec-head">
+      <!-- CMS-EDITABLE: story section intro -->
+      <span class="sec-kicker">Our Story</span>
+      <h2>A garage, not a boutique.</h2>
+    </div>
+    <div class="story-grid">
+      <div class="story-copy">
+        <!-- CMS-EDITABLE: shop story copy -->
+        <p><strong>Spoke &amp; Sprocket</strong> is a neighborhood bike shop. This is where its story goes. What got you into bikes? What makes your shop different from the place down the street? Two or three honest paragraphs beat a polished novel.</p>
+        <p>This space is a placeholder for the day-to-day: who works here, what you fix, and why regulars keep coming back. When this becomes your site, your real story replaces every word here.</p>
+        <p class="quote">"Your best one-liner about the shop goes here."</p>
+        <p>(sample quote)</p>
+      </div>
+      <div class="story-facts">
+        <!-- CMS-EDITABLE: shop facts -->
+        <div class="fact"><span class="fact-num">&ndash;</span><div><b>Founded</b><p>Your founding year and one line about how it started.</p></div></div>
+        <div class="fact"><span class="fact-num">&ndash;</span><div><b>Your crew</b><p>Who works here, in one line.</p></div></div>
+        <div class="fact"><span class="fact-num">&ndash;</span><div><b>Bikes serviced</b><p>A number you're proud of goes here.</p></div></div>
+        <div class="fact"><span class="fact-num">0</span><div><b>Upsells, ever</b><p>We recommend what your bike needs. Nothing more. Check the price list.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DROP-OFF FORM ================= -->
+<section id="dropoff">
+  <div class="wrap">
+    <div class="sec-head">
+      <!-- CMS-EDITABLE: drop-off section intro -->
+      <span class="sec-kicker">Repair Drop-Off</span>
+      <h2>Tell us what's wrong.</h2>
+      <p>Fill this out and we'll have a stand ready when you roll in. We'll confirm by text within the hour during shop hours.</p>
+    </div>
+    <form class="form-shell" id="dropoffForm" novalidate>
+      <div class="form-grid">
+        <div class="field" data-field="name">
+          <label for="f-name">Your name *</label>
+          <input type="text" id="f-name" name="name" placeholder="e.g. Alex Rivera" autocomplete="name">
+          <span class="error-msg">Please enter your name.</span>
+        </div>
+        <div class="field" data-field="phone">
+          <label for="f-phone">Phone *</label>
+          <input type="tel" id="f-phone" name="phone" placeholder="e.g. (312) 555-0188" autocomplete="tel">
+          <span class="error-msg">Enter a valid phone number (at least 10 digits).</span>
+        </div>
+        <div class="field full" data-field="bikeType">
+          <label for="f-bike">Bike type *</label>
+          <select id="f-bike" name="bikeType">
+            <option value="">Select your bike type</option>
+            <option>Road bike</option>
+            <option>Mountain bike</option>
+            <option>Hybrid / commuter</option>
+            <option>E-bike</option>
+            <option>Cruiser</option>
+            <option>Gravel / CX</option>
+            <option>Cargo bike</option>
+            <option>Kids' bike</option>
+            <option>Other</option>
+          </select>
+          <span class="error-msg">Please choose a bike type.</span>
+        </div>
+        <div class="field full" data-field="issue">
+          <label for="f-issue">What's going on with it? *</label>
+          <textarea id="f-issue" name="issue" placeholder="e.g. Rear brake squeals and the gears skip under load. Started last week after riding in the rain."></textarea>
+          <span class="error-msg">Tell us a bit about the issue (at least 10 characters).</span>
+        </div>
+      </div>
+      <div aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden">
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off">
+      </div>
+      <button type="submit" class="btn btn-red" style="width:100%">Request Drop-Off</button>
+      <p id="submitError" role="alert" style="display:none;color:#ff6b6e;margin-top:12px">Something went wrong sending that. Please call the shop at (312) 555-0147 instead.</p>
+      <p style="color:var(--muted);font-size:13px;margin-top:12px">No spam, no mailing list. We only use your number to confirm your drop-off.</p>
+    </form>
+    <div id="form-success" role="status">
+      <!-- CMS-EDITABLE: form success message -->
+      <h3>You're on the books.</h3>
+      <p id="success-detail">Thanks! We'll text you within the hour to confirm your drop-off time.</p>
+      <p style="margin-top:10px;font-size:14px;color:var(--muted)">Roll in anytime during shop hours. No appointment needed if plans change.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOURS + LOCATION ================= -->
+<section class="alt" id="visit">
+  <div class="wrap">
+    <div class="sec-head">
+      <!-- CMS-EDITABLE: visit section intro -->
+      <span class="sec-kicker">Hours &amp; Location</span>
+      <h2>Come find us.</h2>
+      <p>Two blocks off the Brown Line, bike racks out front, coffee pot always on.</p>
+    </div>
+    <div class="hl-grid">
+      <div class="hl-card">
+        <!-- CMS-EDITABLE: shop hours -->
+        <h3>Shop Hours</h3>
+        <div id="hoursList">
+          <div class="hours-row" data-day="1"><span>Monday</span><span>9:00a – 6:00p</span></div>
+          <div class="hours-row" data-day="2"><span>Tuesday</span><span>9:00a – 6:00p</span></div>
+          <div class="hours-row" data-day="3"><span>Wednesday</span><span>9:00a – 6:00p</span></div>
+          <div class="hours-row" data-day="4"><span>Thursday</span><span>9:00a – 7:00p</span></div>
+          <div class="hours-row" data-day="5"><span>Friday</span><span>9:00a – 7:00p</span></div>
+          <div class="hours-row" data-day="6"><span>Saturday</span><span>10:00a – 5:00p</span></div>
+          <div class="hours-row" data-day="0"><span>Sunday</span><span>Closed</span></div>
+        </div>
+      </div>
+      <div class="hl-card">
+        <!-- CMS-EDITABLE: address + phone -->
+        <h3>Find Us</h3>
+        <address>
+          1247 W Division Street<br>
+          Chicago, IL 60642<br>
+          Near North &middot; East Village edge
+        </address>
+        <a class="phone-big" href="tel:+13125550147">(312) 555-0147</a>
+        <div><a class="map-link" href="https://maps.google.com/?q=1247+W+Division+St+Chicago+IL" target="_blank" rel="noopener">Get directions →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stripes" style="height:8px"></div>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <!-- CMS-EDITABLE: footer brand blurb -->
+        <span class="logo-name">Spoke &amp; <span>Sprocket</span></span>
+        <p class="foot-brand">No-nonsense bike repair, tune-ups, and rentals in Chicago's Near North. Published prices, fast turnaround, zero upsells.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#repairs">Repair Price List</a></li>
+          <li><a href="#tuneups">Tune-Up Packages</a></li>
+          <li><a href="#rentals">Rentals</a></li>
+          <li><a href="#dropoff">Book a Repair</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul>
+          <li><a href="#visit">Hours &amp; Location</a></li>
+          <li><a href="#story">Our Story</a></li>
+          <!-- CMS-EDITABLE: footer phone -->
+          <li><a href="tel:+13125550147">(312) 555-0147</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fineprint">
+      <!-- CMS-EDITABLE: footer fine print -->
+      <p>&copy; <span id="year">2026</span> Spoke &amp; Sprocket. All rights reserved. <span class="demo">(demo site, fictional content)</span></p>
+    </div>
+  </div>
+</footer>
+
+<!-- CMS-EDITABLE: sticky mobile call number -->
+<a class="sticky-call" href="tel:+13125550147">📞 Call the Shop: (312) 555-0147</a>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ---------- hamburger nav ---------- */
+  var burger = document.getElementById('hamburger');
+  var menu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  menu.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){
+      menu.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  /* ---------- footer year ---------- */
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ---------- highlight today's hours row ---------- */
+  var today = new Date().getDay(); // 0 = Sunday
+  document.querySelectorAll('#hoursList .hours-row').forEach(function(row){
+    if (parseInt(row.getAttribute('data-day'), 10) === today) {
+      row.classList.add('today');
+    }
+  });
+
+  /* ---------- drop-off form validation ---------- */
+  var form = document.getElementById('dropoffForm');
+  var success = document.getElementById('form-success');
+
+  function setInvalid(fieldName, invalid){
+    var field = form.querySelector('[data-field="' + fieldName + '"]');
+    if (field) field.classList.toggle('invalid', invalid);
+    return !invalid;
+  }
+  function digitsOnly(str){ return (str || '').replace(/\D/g, ''); }
+
+  function validate(){
+    var ok = true;
+    var name = form.elements['name'].value.trim();
+    var phone = form.elements['phone'].value.trim();
+    var bikeType = form.elements['bikeType'].value;
+    var issue = form.elements['issue'].value.trim();
+
+    ok = setInvalid('name', name.length < 2) && ok;
+    ok = setInvalid('phone', digitsOnly(phone).length < 10) && ok;
+    ok = setInvalid('bikeType', bikeType === '') && ok;
+    ok = setInvalid('issue', issue.length < 10) && ok;
+    return ok;
+  }
+
+  // clear the error on a field as the user fixes it
+  form.querySelectorAll('input, select, textarea').forEach(function(el){
+    el.addEventListener('input', function(){
+      var field = el.closest('.field');
+      if (field) field.classList.remove('invalid');
+    });
+    el.addEventListener('change', function(){
+      var field = el.closest('.field');
+      if (field) field.classList.remove('invalid');
+    });
+  });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!validate()) {
+      var firstBad = form.querySelector('.field.invalid input, .field.invalid select, .field.invalid textarea');
+      if (firstBad) firstBad.focus();
+      return;
+    }
+    var name = form.elements['name'].value.trim();
+    var phone = form.elements['phone'].value.trim();
+    var bikeType = form.elements['bikeType'].value;
+    var issue = form.elements['issue'].value.trim();
+
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var btnLabel = submitBtn.textContent;
+    var errBox = document.getElementById('submitError');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    errBox.style.display = 'none';
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: '737f6d54-95b0-4d0a-8b86-113fe1757216',
+        subject: '[Sample: Spoke & Sprocket] New service booking',
+        from_name: name,
+        botcheck: false,
+        name: name,
+        phone: phone,
+        bikeType: bikeType,
+        issue: issue
+      })
+    }).then(function(res){ return res.json(); }).then(function(data){
+      if (!data || !data.success) { throw new Error('send failed'); }
+      document.getElementById('success-detail').textContent =
+        'Thanks, ' + name + '! We got your drop-off request and will text you within the hour to confirm a time.';
+      form.style.display = 'none';
+      success.classList.add('show');
+      success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }).catch(function(){
+      submitBtn.disabled = false;
+      submitBtn.textContent = btnLabel;
+      errBox.style.display = 'block';
+      errBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  });
+})();
+</script>
+</body>
+</html>
