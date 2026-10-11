@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Copper Whisk — Oak Park Bakery &amp; Café</title>
-<meta name="description" content="The Copper Whisk is a chic patisserie and café in Oak Park, IL. Signature tarts, brunch, and espresso. (Demo site — fictional content)">
+<title>The Copper Whisk | Oak Park Bakery &amp; Café</title>
+<meta name="description" content="The Copper Whisk is a bakery and café in Oak Park, IL. Tarts, brunch, and espresso. (Demo site, fictional content)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -37,7 +37,7 @@
 
   /* ---------- Nav ---------- */
   header.nav{
-    position:fixed;top:0;left:0;right:0;z-index:50;
+    position:fixed;top:0;left:0;right:0;z-index:100;
     display:flex;align-items:center;justify-content:space-between;
     padding:1rem 1.5rem;
     background:rgba(255,253,249,.92);
@@ -272,7 +272,8 @@
     .nav-links a{font-size:1.1rem}
     header.nav .btn-sm{display:none}
     .hamburger{display:block;z-index:60}
-    .field-row{grid-template-columns:1fr}
+    .field-row,.menu-grid{grid-template-columns:1fr}
+    footer{padding-bottom:6rem}
     .sticky-cta{display:flex}
     body{padding-bottom:0}
     section{padding:3.6rem 1.25rem}
@@ -305,8 +306,8 @@
   <div class="hero-inner">
     <!-- CMS-EDITABLE: hero headline, subcopy, CTAs -->
     <span class="eyebrow">Oak Park &middot; Est. 2019</span>
-    <h1>Perfectly <em>imperfect</em> tarts, baked every morning.</h1>
-    <p class="lede">A chic little patisserie on Marion Street — flaky crusts, honest fillings, and espresso worth slowing down for.</p>
+    <h1>Tarts baked fresh every morning.</h1>
+    <p class="lede">A bakery and café on Marion Street in Oak Park. Fresh tarts every morning, plus brunch and espresso.</p>
     <div class="hero-ctas">
       <a href="#visit" class="btn btn-gold">Visit Us</a>
       <a href="#menu" class="btn btn-outline">See the Menu</a>
@@ -321,7 +322,7 @@
     <div class="section-head">
       <span class="eyebrow">The Menu</span>
       <h2>Baked at dawn, gone by noon</h2>
-      <p>Everything is made in-house daily. When a tart sells out, it's gone — that's the deal, and the regulars wouldn't have it any other way.</p>
+      <p>Everything is made in-house daily. When a tart sells out, it's gone for the day.</p>
     </div>
     <!-- CMS-EDITABLE: menu items, prices, tags -->
     <div class="tabs" role="tablist" aria-label="Menu categories">
@@ -333,13 +334,13 @@
     <div class="tab-panel active" id="panel-tarts" role="tabpanel">
       <div class="menu-grid">
         <div class="dish">
-          <div class="dish-top"><h3>The The Copper Whisk</h3><span class="price">$7.50</span></div>
-          <p>Our namesake — a rustic, deliberately "cracked" brown-butter tart with vanilla-bean custard and torched meringue shards.</p>
+          <div class="dish-top"><h3>The Copper Whisk</h3><span class="price">$7.50</span></div>
+          <p>Our namesake: brown-butter tart with vanilla-bean custard and torched meringue.</p>
           <span class="tag">House Signature</span>
         </div>
         <div class="dish">
           <div class="dish-top"><h3>Lemon Cloud Tart</h3><span class="price">$6.75</span></div>
-          <p>Meyer lemon curd whipped into a silk filling, brûléed top, almond sablé crust.</p>
+          <p>Meyer lemon curd, brûléed top, almond crust.</p>
         </div>
         <div class="dish">
           <div class="dish-top"><h3>Dark Chocolate &amp; Sea Salt</h3><span class="price">$7.00</span></div>
@@ -353,7 +354,7 @@
         </div>
         <div class="dish">
           <div class="dish-top"><h3>Pistachio Rose Tart</h3><span class="price">$7.25</span></div>
-          <p>Sicilian pistachio cream, whisper of rosewater, crushed candied pistachios.</p>
+          <p>Sicilian pistachio cream, rosewater, crushed candied pistachios.</p>
         </div>
         <div class="dish">
           <div class="dish-top"><h3>Salted Caramel Apple</h3><span class="price">$6.75</span></div>
@@ -366,12 +367,12 @@
       <div class="menu-grid">
         <div class="dish">
           <div class="dish-top"><h3>Tartine du Matin</h3><span class="price">$11.00</span></div>
-          <p>Thick-cut levain, whipped ricotta, honey, thyme, and whatever fruit is shining.</p>
+          <p>Thick-cut levain, whipped ricotta, honey, thyme, and seasonal fruit.</p>
           <span class="tag">Weekend Favorite</span>
         </div>
         <div class="dish">
           <div class="dish-top"><h3>Quiche of the Day</h3><span class="price">$9.50</span></div>
-          <p>Baked in our tart shells, obviously. Served with little greens and pickled shallot.</p>
+          <p>Baked in our tart shells. Served with greens and pickled shallot.</p>
         </div>
         <div class="dish">
           <div class="dish-top"><h3>Croissant Breakfast Sandwich</h3><span class="price">$10.50</span></div>
@@ -379,7 +380,7 @@
         </div>
         <div class="dish">
           <div class="dish-top"><h3>Shakshuka Brunch Tart</h3><span class="price">$12.00</span></div>
-          <p>Our savory showpiece — spiced tomato, baked eggs, feta, in a olive-oil tart shell with grilled bread.</p>
+          <p>Our savory tart: spiced tomato, baked eggs, feta, in an olive-oil tart shell with grilled bread.</p>
           <span class="tag">Chef's Pick</span>
         </div>
         <div class="dish">
@@ -397,15 +398,15 @@
       <div class="menu-grid">
         <div class="dish">
           <div class="dish-top"><h3>Espresso</h3><span class="price">$3.75</span></div>
-          <p>Double shot of our house blend — chocolatey, low acid, built for tarts.</p>
+          <p>Double shot of our house blend. Chocolatey, low acid.</p>
         </div>
         <div class="dish">
           <div class="dish-top"><h3>Cortado</h3><span class="price">$4.50</span></div>
-          <p>Equal parts espresso and steamed milk. The purist's pick.</p>
+          <p>Equal parts espresso and steamed milk.</p>
         </div>
         <div class="dish">
           <div class="dish-top"><h3>Honey Lavender Latte</h3><span class="price">$5.75</span></div>
-          <p>House lavender syrup, local honey, double espresso. Our bestseller by a mile.</p>
+          <p>House lavender syrup, local honey, double espresso. Our bestseller.</p>
           <span class="tag">Bestseller</span>
         </div>
         <div class="dish">
@@ -418,12 +419,12 @@
         </div>
         <div class="dish">
           <div class="dish-top"><h3>Drinking Chocolate</h3><span class="price">$5.50</span></div>
-          <p>Thick European-style, 70% dark, pinch of sea salt. Basically dessert.</p>
+          <p>Thick European-style, 70% dark, pinch of sea salt.</p>
         </div>
       </div>
     </div>
 
-    <p class="menu-note">Whole tarts &amp; dozens available with 48-hour notice — see Catering below.</p>
+    <p class="menu-note">Whole tarts &amp; dozens available with 48-hour notice. See Catering below.</p>
   </div>
 </section>
 
@@ -435,12 +436,12 @@
         <!-- CMS-EDITABLE: catering headline, perks -->
         <span class="eyebrow">Catering &amp; Events</span>
         <h2>Bring the tarts to the party</h2>
-        <p>Weddings, office mornings, baby showers, milestone birthdays — if there's a table, we'll fill it with something beautiful. Our catering kitchen handles events from 10 to 200 guests across Oak Park and the near west suburbs.</p>
+        <p>Weddings, office mornings, baby showers, milestone birthdays. We cater events from 10 to 200 guests across Oak Park and the near west suburbs.</p>
         <ul class="perk-list">
-          <li><span class="check">&#10003;</span><span><strong>Tart towers &amp; dessert tables</strong> — designed around your colors and theme.</span></li>
-          <li><span class="check">&#10003;</span><span><strong>Brunch boxes for offices</strong> — quiches, tartines, and cold brew by the dozen.</span></li>
-          <li><span class="check">&#10003;</span><span><strong>Wedding cakes, tart-style</strong> — stacked tarts instead of fondant. Trust us.</span></li>
-          <li><span class="check">&#10003;</span><span><strong>Dietary-friendly options</strong> — gluten-free crusts and vegan fillings on request.</span></li>
+          <li><span class="check">&#10003;</span><span><strong>Tart towers &amp; dessert tables</strong>, designed around your colors and theme.</span></li>
+          <li><span class="check">&#10003;</span><span><strong>Brunch boxes for offices</strong>: quiches, tartines, and cold brew by the dozen.</span></li>
+          <li><span class="check">&#10003;</span><span><strong>Wedding cakes, tart-style</strong>: stacked tarts instead of fondant.</span></li>
+          <li><span class="check">&#10003;</span><span><strong>Dietary-friendly options</strong>: gluten-free crusts and vegan fillings on request.</span></li>
         </ul>
         <p style="font-size:.9rem;color:var(--muted)">Prefer to talk it through? Call us at <a href="tel:+17085550142" style="color:var(--rose-dark);font-weight:600">(708) 555-0142</a>.</p>
       </div>
@@ -487,7 +488,7 @@
         <div class="form-success" id="formSuccess" role="status">
           <div class="big-check">&#10003;</div>
           <h3>You're on the list!</h3>
-          <p id="successMsg">Thanks — we'll be in touch within one business day.</p>
+          <p id="successMsg">Thanks. We'll be in touch within one business day.</p>
         </div>
       </div>
     </div>
@@ -504,15 +505,15 @@
       <div class="story-copy">
         <!-- CMS-EDITABLE: story headline, paragraphs, stats -->
         <span class="eyebrow">Our Story</span>
-        <h2>Beautifully imperfect, baked fresh daily</h2>
-        <p>Every bakery has a story &mdash; this is where yours goes. How did you start? What do you believe about pastry? A few honest lines beat a polished novel.</p>
+        <h2>Baked fresh daily</h2>
+        <p>Every bakery has a story. This is where yours goes. How did you start? What do you believe about pastry?</p>
         <p>This space is a placeholder for the day-to-day: what you bake, when it comes out of the oven, and who it's for. When this becomes your site, your real story replaces every word here.</p>
         <div class="stat-row">
-          <div class="stat"><div class="num">&mdash;</div><div class="lbl">Tart varieties a year</div></div>
-          <div class="stat"><div class="num">&mdash;</div><div class="lbl">Five-star reviews</div></div>
-          <div class="stat"><div class="num">&mdash;</div><div class="lbl">Tarts baked monthly</div></div>
+          <div class="stat"><div class="num">&ndash;</div><div class="lbl">Tart varieties a year</div></div>
+          <div class="stat"><div class="num">&ndash;</div><div class="lbl">Five-star reviews</div></div>
+          <div class="stat"><div class="num">&ndash;</div><div class="lbl">Tarts baked monthly</div></div>
         </div>
-        <p class="sig">&mdash; (founder name here)</p>
+        <p class="sig">&ndash; (founder name here)</p>
       </div>
     </div>
   </div>
@@ -555,7 +556,7 @@
   <div class="fbrand">The Copper Whisk</div>
   <p>1124 W. Marion Street, Oak Park, IL 60302 &middot; (708) 555-0142</p>
   <p>Tue–Sun &middot; baked fresh daily</p>
-  <div><span class="demo-note">(demo site — fictional content)</span></div>
+  <div><span class="demo-note">(demo site, fictional content)</span></div>
 </footer>
 
 <!-- Sticky mobile call CTA -->
@@ -671,7 +672,7 @@
     }
 
     var firstName = name.value.trim().split(' ')[0];
-    successMsg.textContent = 'Thanks, ' + firstName + ' — we\u2019ll be in touch within one business day about your event.';
+    successMsg.textContent = 'Thanks, ' + firstName + '. We\u2019ll be in touch within one business day about your event.';
     form.style.display = 'none';
     success.classList.add('show');
     success.scrollIntoView({behavior:'smooth', block:'center'});
