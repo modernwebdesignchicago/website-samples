@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Security Shop Inc | 24/7 Locksmith in Lakeview, Chicago</title>
+<meta name="description" content="Security Shop Inc — Lakeview, Chicago's trusted locksmith. 24/7 emergency lockouts, rekeying, smart lock installation, commercial master key systems, and safe services.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0f2a43;
+    --navy-2:#123650;
+    --steel:#2f6b8f;
+    --steel-light:#dbe8f1;
+    --accent:#f5a524;
+    --accent-dark:#d88d12;
+    --ink:#1d2b38;
+    --muted:#5b6b7a;
+    --bg:#f4f7fa;
+    --white:#ffffff;
+    --radius:14px;
+    --shadow:0 10px 30px rgba(15,42,67,.10);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.6;
+  }
+  h1,h2,h3,.brand-name{font-family:'Archivo','Inter',sans-serif;letter-spacing:-.01em}
+  a{color:inherit}
+  img{max-width:100%}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+  /* ---------- Header ---------- */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    background:rgba(15,42,67,.97);
+    color:#fff;
+    border-bottom:3px solid var(--accent);
+  }
+  .nav-row{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+  .brand-badge{
+    width:44px;height:44px;border-radius:12px;flex:0 0 44px;
+    background:linear-gradient(135deg,var(--steel),var(--navy-2));
+    border:2px solid var(--accent);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Archivo',sans-serif;font-weight:800;font-size:20px;color:#fff;
+  }
+  .brand-name{font-size:19px;font-weight:800;line-height:1.15}
+  .brand-name small{display:block;font-family:'Inter',sans-serif;font-weight:500;font-size:11.5px;color:#bcd2e2;letter-spacing:.06em}
+  nav.links{display:flex;gap:6px;align-items:center}
+  nav.links a{
+    color:#e7eef5;text-decoration:none;font-size:14.5px;font-weight:500;
+    padding:9px 13px;border-radius:9px;
+  }
+  nav.links a:hover{background:rgba(255,255,255,.10)}
+  .nav-cta{
+    background:var(--accent)!important;color:#17202a!important;font-weight:700!important;
+  }
+  .nav-cta:hover{background:var(--accent-dark)!important;color:#fff!important}
+  .hamburger{
+    display:none;background:none;border:0;cursor:pointer;padding:8px;
+  }
+  .hamburger span{display:block;width:26px;height:3px;background:#fff;border-radius:2px;margin:5px 0;transition:.25s}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    background:
+      linear-gradient(115deg,rgba(10,28,44,.96) 0%,rgba(15,42,67,.88) 55%,rgba(47,107,143,.80) 100%);
+    color:#fff;
+    padding:84px 0 70px;
+    position:relative;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.25fr .9fr;gap:44px;align-items:center}
+  .pill{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(245,165,36,.16);border:1px solid rgba(245,165,36,.55);
+    color:#ffd98c;font-size:13px;font-weight:600;letter-spacing:.05em;
+    padding:7px 14px;border-radius:999px;margin-bottom:18px;
+  }
+  .pill .dot{width:8px;height:8px;border-radius:50%;background:#37d67a;animation:pulse 1.8s infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(55,214,122,.6)}50%{box-shadow:0 0 0 7px rgba(55,214,122,0)}}
+  .hero h1{font-size:clamp(32px,5vw,54px);line-height:1.08;font-weight:800;margin-bottom:16px}
+  .hero h1 .hl{color:var(--accent)}
+  .hero p.lead{font-size:17.5px;color:#c8d9e8;max-width:520px;margin-bottom:28px}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:26px}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:'Archivo',sans-serif;font-weight:700;font-size:16px;
+    padding:15px 26px;border-radius:12px;text-decoration:none;border:0;cursor:pointer;
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .btn-call{background:var(--accent);color:#17202a;box-shadow:0 6px 20px rgba(245,165,36,.35)}
+  .btn-call:hover{background:var(--accent-dark);color:#fff;transform:translateY(-2px)}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.35)}
+  .btn-ghost:hover{background:rgba(255,255,255,.16)}
+  .hero-trust{display:flex;gap:22px;flex-wrap:wrap;font-size:14px;color:#bcd2e2}
+  .hero-trust strong{color:#fff}
+  .hero-card{
+    background:#fff;color:var(--ink);border-radius:18px;padding:30px 28px;
+    box-shadow:0 24px 60px rgba(0,0,0,.30);
+  }
+  .hero-card h3{font-size:19px;margin-bottom:6px;color:var(--navy)}
+  .hero-card p{font-size:14px;color:var(--muted);margin-bottom:16px}
+  .eta-row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-top:1px solid #e6edf3;font-size:14.5px}
+  .eta-row:first-of-type{border-top:0}
+  .eta-row b{color:var(--steel)}
+  .eta-badge{display:inline-block;background:#e8f6ee;color:#157a3e;font-weight:700;font-size:12.5px;padding:4px 12px;border-radius:999px}
+
+  /* ---------- Sections ---------- */
+  section{padding:70px 0}
+  .kicker{
+    display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.14em;
+    color:var(--steel);text-transform:uppercase;margin-bottom:10px;
+  }
+  h2.sec-title{font-size:clamp(26px,3.6vw,38px);font-weight:800;color:var(--navy);margin-bottom:12px;line-height:1.15}
+  p.sec-sub{color:var(--muted);font-size:16.5px;max-width:640px;margin-bottom:36px}
+
+  /* ---------- Services ---------- */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+  .card{
+    background:var(--white);border-radius:var(--radius);padding:28px 24px;
+    box-shadow:var(--shadow);border-top:4px solid var(--steel);
+    display:flex;flex-direction:column;gap:10px;
+  }
+  .card .icon{
+    width:52px;height:52px;border-radius:14px;flex:0 0 52px;
+    background:var(--steel-light);color:var(--navy-2);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .card .icon svg{width:28px;height:28px}
+  .card h3{font-size:18px;color:var(--navy)}
+  .card p{font-size:14.5px;color:var(--muted);flex:1}
+  .card .price{font-size:13.5px;font-weight:600;color:var(--steel)}
+  .card.featured{border-top-color:var(--accent);background:linear-gradient(180deg,#fffdf6,#fff)}
+
+  /* ---------- Why choose us ---------- */
+  .why{background:var(--navy);color:#fff}
+  .why h2.sec-title{color:#fff}
+  .why p.sec-sub{color:#a9c1d6}
+  .why .kicker{color:var(--accent)}
+  .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+  .why-item{
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+    border-radius:var(--radius);padding:26px 22px;
+  }
+  .why-item h3{font-size:17px;margin:12px 0 8px;color:#fff}
+  .why-item p{font-size:14.5px;color:#b9cede}
+  .why-item .num{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:40px;height:40px;border-radius:50%;
+    background:var(--accent);color:#17202a;font-family:'Archivo',sans-serif;font-weight:800;
+  }
+
+  /* ---------- Form ---------- */
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+  .form-card{
+    background:#fff;border-radius:18px;padding:34px 30px;box-shadow:var(--shadow);
+    border:1px solid #e3ebf2;
+  }
+  .field{margin-bottom:18px}
+  .field label{display:block;font-weight:600;font-size:14px;margin-bottom:7px;color:var(--navy)}
+  .field label .req{color:#c0392b}
+  .field input,.field select{
+    width:100%;padding:13px 14px;font-size:15px;font-family:inherit;
+    border:1.5px solid #c9d6e2;border-radius:10px;background:#fbfdff;color:var(--ink);
+  }
+  .field input:focus,.field select:focus{outline:2px solid var(--steel);border-color:var(--steel);background:#fff}
+  .field .err{display:none;font-size:13px;color:#c0392b;margin-top:6px;font-weight:500}
+  .field.invalid input,.field.invalid select{border-color:#c0392b}
+  .field.invalid .err{display:block}
+  .radio-group{display:flex;gap:10px;flex-wrap:wrap}
+  .radio-chip{position:relative}
+  .radio-chip input{position:absolute;opacity:0;inset:0;cursor:pointer}
+  .radio-chip span{
+    display:inline-block;padding:10px 18px;border:1.5px solid #c9d6e2;border-radius:999px;
+    font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;background:#fbfdff;
+  }
+  .radio-chip input:checked + span{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .radio-chip input:focus-visible + span{outline:2px solid var(--steel)}
+  .form-note{font-size:13.5px;color:var(--muted);margin-top:14px}
+  #formSuccess{
+    display:none;background:#e8f6ee;border:1.5px solid #9fdcb6;border-radius:12px;
+    padding:22px;margin-top:18px;color:#14532d;
+  }
+  #formSuccess h3{font-size:17px;margin-bottom:6px}
+  #formSuccess p{font-size:14.5px}
+  .info-list{list-style:none;display:flex;flex-direction:column;gap:18px;margin-top:8px}
+  .info-list li{display:flex;gap:14px;align-items:flex-start}
+  .info-list .ic{
+    width:42px;height:42px;flex:0 0 42px;border-radius:12px;background:var(--steel-light);
+    display:flex;align-items:center;justify-content:center;color:var(--navy-2);font-weight:800;
+  }
+  .info-list b{color:var(--navy)}
+  .info-list p{font-size:14.5px;color:var(--muted)}
+
+  /* ---------- Service area ---------- */
+  .area{background:#e9f0f6}
+  .hoods{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+  .hood{
+    background:#fff;border:1px solid #cfdae6;border-radius:999px;
+    padding:9px 18px;font-size:14.5px;font-weight:500;color:var(--navy-2);
+  }
+
+  /* ---------- Hours / location ---------- */
+  .hl-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .hl-card{background:#fff;border-radius:var(--radius);padding:30px 28px;box-shadow:var(--shadow)}
+  .hl-card h3{font-size:19px;color:var(--navy);margin-bottom:14px}
+  .hours-table{width:100%;border-collapse:collapse;font-size:14.5px}
+  .hours-table td{padding:9px 0;border-bottom:1px solid #e9eef3}
+  .hours-table tr:last-child td{border-bottom:0}
+  .hours-table td:last-child{text-align:right;font-weight:600;color:var(--steel)}
+  .open-now{color:#157a3e;font-weight:700}
+  address{font-style:normal;font-size:15px;color:var(--muted);line-height:1.8}
+  address b{color:var(--navy)}
+
+  /* ---------- Footer ---------- */
+  footer{background:#0a1f33;color:#9db4c8;padding:40px 0 110px;font-size:14px}
+  .foot-grid{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start}
+  footer .fbrand{color:#fff;font-family:'Archivo',sans-serif;font-weight:800;font-size:17px;margin-bottom:8px}
+  footer a{color:#c9dcf0;text-decoration:none}
+  footer a:hover{text-decoration:underline}
+  .demo-note{margin-top:18px;font-size:12.5px;color:#7d93a8}
+
+  /* ---------- Sticky mobile CTA ---------- */
+  .sticky-call{
+    display:none;position:fixed;left:12px;right:12px;bottom:12px;z-index:60;
+    background:var(--accent);color:#17202a;text-decoration:none;
+    font-family:'Archivo',sans-serif;font-weight:800;font-size:17px;
+    padding:15px;border-radius:14px;text-align:center;
+    box-shadow:0 10px 28px rgba(0,0,0,.35);
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr}
+    .form-grid,.hl-grid{grid-template-columns:1fr}
+  }
+  @media (max-width:760px){
+    nav.links{
+      display:none;position:absolute;top:100%;left:0;right:0;
+      background:var(--navy);flex-direction:column;align-items:stretch;
+      padding:10px 20px 18px;gap:2px;border-top:1px solid rgba(255,255,255,.12);
+    }
+    nav.links.open{display:flex}
+    nav.links a{padding:13px 8px;border-bottom:1px solid rgba(255,255,255,.07)}
+    .hamburger{display:block}
+    .hamburger.open span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+    section{padding:52px 0}
+    .hero{padding:60px 0 50px}
+    .sticky-call{display:block}
+    footer{padding-bottom:130px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site">
+  <div class="wrap nav-row">
+    <!-- CMS-EDITABLE: brand name, tagline, and phone number -->
+    <a class="brand" href="#top" aria-label="Security Shop Inc home">
+      <span class="brand-badge" aria-hidden="true">S</span>
+      <span class="brand-name">Security Shop Inc<small>LAKEVIEW &middot; CHICAGO LOCKSMITH</small></span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="links" id="mainNav" aria-label="Main navigation">
+      <a href="#services">Services</a>
+      <a href="#why">Why Us</a>
+      <a href="#request">Request Service</a>
+      <a href="#area">Service Area</a>
+      <a href="#visit">Hours &amp; Location</a>
+      <!-- CMS-EDITABLE: click-to-call phone number -->
+      <a class="nav-cta" href="tel:+13125550147">Call (312) 555-0147</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <!-- CMS-EDITABLE: hero headline, subtext, and call-to-action labels -->
+      <span class="pill"><span class="dot"></span> Technicians on call now &mdash; 24/7</span>
+      <h1>Locked Out in Lakeview? <span class="hl">We&rsquo;ll Get You Back In.</span></h1>
+      <p class="lead">Security Shop Inc is Lakeview&rsquo;s neighborhood locksmith &mdash; fast emergency lockouts, honest upfront pricing, and licensed pros who treat your door like their own. Average arrival: under 30 minutes.</p>
+      <div class="hero-ctas">
+        <!-- CMS-EDITABLE: click-to-call phone number -->
+        <a class="btn btn-call" href="tel:+13125550147">&#9742; Call (312) 555-0147</a>
+        <a class="btn btn-ghost" href="#request">Request Service Online</a>
+      </div>
+      <div class="hero-trust">
+        <span><strong>4.9&#9733;</strong> from 620+ neighbors</span>
+        <span><strong>Licensed &amp; insured</strong> in Illinois</span>
+        <span><strong>No hidden fees</strong> &mdash; quote before we start</span>
+      </div>
+    </div>
+    <div class="hero-card">
+      <!-- CMS-EDITABLE: response-time card -->
+      <h3>Tonight&rsquo;s response times</h3>
+      <p>Live estimates for the Lakeview area, updated hourly.</p>
+      <div class="eta-row"><span>Emergency lockout</span><b>20&ndash;30 min</b></div>
+      <div class="eta-row"><span>Rekey / lock change</span><b>Same-day</b></div>
+      <div class="eta-row"><span>Smart lock install</span><b>Next-day</b></div>
+      <div style="margin-top:14px"><span class="eta-badge">On call now</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services">
+  <div class="wrap">
+    <!-- CMS-EDITABLE: services section heading and subtext -->
+    <span class="kicker">What we do</span>
+    <h2 class="sec-title">Locksmith Services, Done Right</h2>
+    <p class="sec-sub">One call covers it all &mdash; homes, apartments, offices, and storefronts across Chicago&rsquo;s North Side.</p>
+    <div class="cards">
+      <!-- CMS-EDITABLE: service cards — title, description, starting price -->
+      <article class="card featured">
+        <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg></span>
+        <h3>Emergency Lockouts</h3>
+        <p>Locked out of your home, car, or office? Our techs arrive fast, open doors without damage, and get you back inside &mdash; day or night, weekends and holidays included.</p>
+        <span class="price">From $85 &middot; 24/7 response</span>
+      </article>
+      <article class="card">
+        <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="15" r="4"/><path d="m10.9 12.1 8.6-8.6M15 5l3 3M18 8l2 2"/></svg></span>
+        <h3>Rekeying &amp; Lock Changes</h3>
+        <p>New place, new roommate, lost keys? We rekey existing locks or install fresh deadbolts so old keys stop working &mdash; usually finished in a single visit.</p>
+        <span class="price">From $25 per lock</span>
+      </article>
+      <article class="card">
+        <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></svg></span>
+        <h3>Smart Lock Installation</h3>
+        <p>Keypads, fingerprint readers, and app-controlled deadbolts from August, Schlage, and Yale. We install, configure, and show you how it all works.</p>
+        <span class="price">From $120 installed</span>
+      </article>
+      <article class="card">
+        <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-4h6v4"/></svg></span>
+        <h3>Commercial &amp; Master Key Systems</h3>
+        <p>Master key hierarchies, high-security cylinders, panic bars, and access control for offices, retail, and multi-unit buildings &mdash; designed to scale.</p>
+        <span class="price">Free on-site quotes</span>
+      </article>
+      <article class="card">
+        <span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M12 9v6M9 12h6"/></svg></span>
+        <h3>Safe Services</h3>
+        <p>Safe opening, combination changes, bolt-down installation, and maintenance for home and business safes &mdash; discreet, careful, and fully insured.</p>
+        <span class="price">From $150</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY CHOOSE US ============ -->
+<section class="why" id="why">
+  <div class="wrap">
+    <!-- CMS-EDITABLE: why-choose-us heading, subtext, and four reasons -->
+    <span class="kicker">Why Security Shop</span>
+    <h2 class="sec-title">The Locksmith Lakeview Actually Recommends</h2>
+    <p class="sec-sub">We&rsquo;ve been the shop on the corner that neighbors send their neighbors to &mdash; here&rsquo;s why.</p>
+    <div class="why-grid">
+      <div class="why-item">
+        <span class="num">1</span>
+        <h3>Licensed &amp; Insured</h3>
+        <p>Fully licensed in Illinois, background-checked technicians, and every job covered by insurance. You&rsquo;ll know exactly who&rsquo;s at your door.</p>
+      </div>
+      <div class="why-item">
+        <span class="num">2</span>
+        <h3>Truly Local</h3>
+        <p>Based right here in Lakeview &mdash; not a call center three states away. We know the buildings, the vintage doors, and the fastest routes.</p>
+      </div>
+      <div class="why-item">
+        <span class="num">3</span>
+        <h3>Upfront Pricing</h3>
+        <p>You get a firm quote before we touch a lock. No &ldquo;it depends&rdquo; surprises, no after-hours ambush fees.</p>
+      </div>
+      <div class="why-item">
+        <span class="num">4</span>
+        <h3>Fast Response</h3>
+        <p>Emergency calls answered around the clock with average arrivals under 30 minutes in our core service area.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REQUEST FORM ============ -->
+<section id="request">
+  <div class="wrap">
+    <!-- CMS-EDITABLE: request form heading and subtext -->
+    <span class="kicker">Get help</span>
+    <h2 class="sec-title">Request Service</h2>
+    <p class="sec-sub">Tell us what you need &mdash; we&rsquo;ll call you back within 15 minutes during business hours (immediately for emergencies).</p>
+    <div class="form-grid">
+      <form class="form-card" id="serviceForm" novalidate>
+        <!-- CMS-EDITABLE: form labels and service-type options -->
+        <div class="field" data-field="name">
+          <label for="fName">Full name <span class="req">*</span></label>
+          <input type="text" id="fName" name="name" autocomplete="name" placeholder="Jane Rivera">
+          <span class="err">Please enter your name.</span>
+        </div>
+        <div class="field" data-field="phone">
+          <label for="fPhone">Phone number <span class="req">*</span></label>
+          <input type="tel" id="fPhone" name="phone" autocomplete="tel" placeholder="(312) 555-0100">
+          <span class="err">Please enter a valid phone number.</span>
+        </div>
+        <div class="field" data-field="service">
+          <label for="fService">Service needed <span class="req">*</span></label>
+          <select id="fService" name="service">
+            <option value="">Choose a service&hellip;</option>
+            <option value="lockout">Emergency lockout</option>
+            <option value="rekey">Rekeying / lock change</option>
+            <option value="smart">Smart lock installation</option>
+            <option value="commercial">Commercial / master key system</option>
+            <option value="safe">Safe services</option>
+            <option value="other">Something else</option>
+          </select>
+          <span class="err">Please choose a service.</span>
+        </div>
+        <div class="field" data-field="urgency">
+          <label>How urgent is it? <span class="req">*</span></label>
+          <div class="radio-group" role="radiogroup" aria-label="Urgency">
+            <label class="radio-chip"><input type="radio" name="urgency" value="emergency"><span>Emergency &mdash; now</span></label>
+            <label class="radio-chip"><input type="radio" name="urgency" value="today"><span>Today</span></label>
+            <label class="radio-chip"><input type="radio" name="urgency" value="week"><span>This week</span></label>
+          </div>
+          <span class="err">Please pick an urgency level.</span>
+        </div>
+        <button type="submit" class="btn btn-call" style="width:100%;justify-content:center">Request a Callback</button>
+        <div id="formSuccess" role="status" aria-live="polite">
+          <h3>Request received!</h3>
+          <p id="formSuccessMsg">Thanks &mdash; we&rsquo;ll call you back shortly.</p>
+        </div>
+        <p class="form-note">Prefer to talk? Call <a href="tel:+13125550147" style="color:var(--steel);font-weight:600">(312) 555-0147</a> any time. No spam, ever &mdash; we only use your number to reach you about this request.</p>
+      </form>
+      <div>
+        <h3 style="color:var(--navy);font-size:20px;margin-bottom:6px">What happens next</h3>
+        <ul class="info-list">
+          <li><span class="ic">1</span><div><b>We call you back</b><p>Within 15 minutes in business hours &mdash; immediately for emergencies, 24/7.</p></div></li>
+          <li><span class="ic">2</span><div><b>You get a firm quote</b><p>Upfront pricing before any work begins. You approve it, or we don&rsquo;t start.</p></div></li>
+          <li><span class="ic">3</span><div><b>A tech heads your way</b><p>Licensed, uniformed, and arriving in a marked van with ID.</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICE AREA ============ -->
+<section class="area" id="area">
+  <div class="wrap">
+    <!-- CMS-EDITABLE: service area heading, subtext, and neighborhood list -->
+    <span class="kicker">Where we work</span>
+    <h2 class="sec-title">Proudly Serving Chicago&rsquo;s North Side</h2>
+    <p class="sec-sub">Headquartered in Lakeview &mdash; most calls in these neighborhoods get same-day or emergency service.</p>
+    <div class="hoods">
+      <span class="hood">Lakeview</span>
+      <span class="hood">Lincoln Park</span>
+      <span class="hood">Wrigleyville</span>
+      <span class="hood">Boystown</span>
+      <span class="hood">Uptown</span>
+      <span class="hood">Edgewater</span>
+      <span class="hood">Ravenswood</span>
+      <span class="hood">Andersonville</span>
+      <span class="hood">Lincoln Square</span>
+      <span class="hood">Roscoe Village</span>
+      <span class="hood">Logan Square</span>
+      <span class="hood">Wicker Park</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOURS & LOCATION ============ -->
+<section id="visit">
+  <div class="wrap">
+    <!-- CMS-EDITABLE: hours, address, and phone number -->
+    <span class="kicker">Find us</span>
+    <h2 class="sec-title">Hours &amp; Location</h2>
+    <p class="sec-sub">Walk-ins welcome for key copies and small jobs &mdash; emergency line never closes.</p>
+    <div class="hl-grid">
+      <div class="hl-card">
+        <h3>Shop Hours</h3>
+        <table class="hours-table">
+          <tr><td>Monday &ndash; Friday</td><td>8:00 AM &ndash; 7:00 PM</td></tr>
+          <tr><td>Saturday</td><td>9:00 AM &ndash; 5:00 PM</td></tr>
+          <tr><td>Sunday</td><td>10:00 AM &ndash; 4:00 PM</td></tr>
+          <tr><td>Emergency line</td><td><span class="open-now">24/7 &mdash; always open</span></td></tr>
+        </table>
+      </div>
+      <div class="hl-card">
+        <h3>Visit the Shop</h3>
+        <address>
+          <b>Security Shop Inc</b><br>
+          2940 N Halsted Street<br>
+          Chicago, IL 60657<br><br>
+          <b>Phone:</b> <a href="tel:+13125550147" style="color:var(--steel);font-weight:600">(312) 555-0147</a><br>
+          <b>Email:</b> <a href="mailto:hello@securityshopchicago.example" style="color:var(--steel);font-weight:600">hello@securityshopchicago.example</a>
+        </address>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <!-- CMS-EDITABLE: footer business name and phone -->
+        <div class="fbrand">Security Shop Inc</div>
+        <div>2940 N Halsted Street, Chicago, IL 60657<br>
+        <a href="tel:+13125550147">(312) 555-0147</a></div>
+      </div>
+      <div>
+        <div class="fbrand" style="font-size:14px">Quick links</div>
+        <div><a href="#services">Services</a> &middot; <a href="#request">Request Service</a> &middot; <a href="#area">Service Area</a> &middot; <a href="#visit">Hours &amp; Location</a></div>
+      </div>
+    </div>
+    <!-- CMS-EDITABLE: footer legal line (keep the demo disclaimer) -->
+    <p class="demo-note">&copy; 2026 Security Shop Inc. All rights reserved. (demo site &mdash; fictional content)</p>
+  </div>
+</footer>
+
+<!-- Sticky mobile call button -->
+<!-- CMS-EDITABLE: sticky mobile click-to-call phone number -->
+<a class="sticky-call" href="tel:+13125550147">&#9742; Call Now &mdash; (312) 555-0147</a>
+
+<script>
+(function () {
+  'use strict';
+
+  // --- Hamburger nav ---
+  var hamburger = document.getElementById('hamburger');
+  var nav = document.getElementById('mainNav');
+
+  function closeNav() {
+    nav.classList.remove('open');
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-label', 'Open menu');
+  }
+
+  hamburger.addEventListener('click', function () {
+    var isOpen = nav.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+    hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+  });
+
+  nav.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', closeNav);
+  });
+
+  document.addEventListener('click', function (e) {
+    if (nav.classList.contains('open') &&
+        !nav.contains(e.target) &&
+        !hamburger.contains(e.target)) {
+      closeNav();
+    }
+  });
+
+  // --- Service request form validation ---
+  var form = document.getElementById('serviceForm');
+  var successBox = document.getElementById('formSuccess');
+  var successMsg = document.getElementById('formSuccessMsg');
+
+  function setInvalid(fieldName, invalid) {
+    var field = form.querySelector('[data-field="' + fieldName + '"]');
+    if (field) field.classList.toggle('invalid', invalid);
+    return !invalid;
+  }
+
+  function validPhone(value) {
+    var digits = value.replace(/\D/g, '');
+    return digits.length >= 10 && digits.length <= 15;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    successBox.style.display = 'none';
+
+    var name = document.getElementById('fName').value.trim();
+    var phone = document.getElementById('fPhone').value.trim();
+    var service = document.getElementById('fService').value;
+    var urgency = form.querySelector('input[name="urgency"]:checked');
+
+    var ok = true;
+    ok = setInvalid('name', name.length < 2) && ok;
+    ok = setInvalid('phone', !validPhone(phone)) && ok;
+    ok = setInvalid('service', service === '') && ok;
+    ok = setInvalid('urgency', !urgency) && ok;
+
+    if (!ok) {
+      var firstBad = form.querySelector('.field.invalid input, .field.invalid select');
+      if (firstBad) firstBad.focus();
+      return;
+    }
+
+    var urgencyLabel = urgency.value === 'emergency' ? 'right away (emergency)'
+      : urgency.value === 'today' ? 'today' : 'this week';
+
+    var serviceLabel = document.getElementById('fService')
+      .options[document.getElementById('fService').selectedIndex].text;
+
+    successMsg.textContent = 'Thanks, ' + name + ' — we\u2019ll call ' + phone +
+      ' ' + urgencyLabel + ' about your ' + serviceLabel.toLowerCase() + '. ' +
+      'In a real hurry? Call (312) 555-0147 now.';
+    successBox.style.display = 'block';
+    successBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    form.querySelector('button[type="submit"]').disabled = false;
+  });
+
+  // Clear a field's error state as the user fixes it
+  form.querySelectorAll('input, select').forEach(function (el) {
+    el.addEventListener('input', function () {
+      var wrapper = el.closest('.field');
+      if (wrapper) wrapper.classList.remove('invalid');
+    });
+    el.addEventListener('change', function () {
+      var wrapper = el.closest('.field');
+      if (wrapper) wrapper.classList.remove('invalid');
+    });
+  });
+})();
+</script>
+</body>
+</html>
