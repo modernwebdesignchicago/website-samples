@@ -343,7 +343,11 @@
           <label for="notes">Anything else? <span style="font-weight:400;color:var(--muted)">(optional)</span></label>
           <textarea id="notes" name="notes" rows="3" placeholder="Theme, colors, inscription, allergies…"></textarea>
         </div>
+        <div aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden">
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off">
+        </div>
         <button type="submit" class="submit-btn">Request My Cake</button>
+        <p class="submit-error" id="submitError" role="alert" style="display:none;color:#b91c1c;margin-top:12px">Something went wrong sending that. Please call us at (312) 555-0148 instead.</p>
       </form>
       <div class="form-success" id="formSuccess" role="status">
         <span class="check">&#127874;</span>
@@ -505,7 +509,8 @@
     ok = setInvalid("f-size", size === "") && ok;
     ok = setInvalid("f-flavor", flavor === "") && ok;
 
-    return { ok: ok, name: name, dateVal: dateVal, size: size, flavor: flavor };
+    return { ok: ok, name: name, phone: phone, dateVal: dateVal, size: size, flavor: flavor,
+             notes: document.getElementById("notes").value.trim() };
   }
 
   // Clear error state as the user fixes fields
@@ -525,12 +530,42 @@
     var niceDate = new Date(result.dateVal + "T12:00:00").toLocaleDateString("en-US", {
       weekday: "long", month: "long", day: "numeric"
     });
-    successText.textContent = "Thanks, " + result.name.split(" ")[0] +
-      "! We've got your request for a " + result.size + " (" + result.flavor +
-      ") needed by " + niceDate + ". We'll call you within one business day to confirm.";
-    form.style.display = "none";
-    successBox.style.display = "block";
-    successBox.scrollIntoView({ behavior: "smooth", block: "center" });
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var btnLabel = submitBtn.textContent;
+    var errBox = document.getElementById("submitError");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
+    errBox.style.display = "none";
+
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({
+        access_key: "6b2f53a2-37d8-4a80-b8b9-747ddfcef37c",
+        subject: "[Sample: Golden Crust Bakery] New cake order inquiry",
+        from_name: result.name,
+        botcheck: false,
+        name: result.name,
+        phone: result.phone,
+        dateNeeded: result.dateVal,
+        size: result.size,
+        flavor: result.flavor,
+        notes: result.notes
+      })
+    }).then(function(res){ return res.json(); }).then(function(data){
+      if (!data || !data.success) { throw new Error("send failed"); }
+      successText.textContent = "Thanks, " + result.name.split(" ")[0] +
+        "! We've got your request for a " + result.size + " (" + result.flavor +
+        ") needed by " + niceDate + ". We'll call you within one business day to confirm.";
+      form.style.display = "none";
+      successBox.style.display = "block";
+      successBox.scrollIntoView({ behavior: "smooth", block: "center" });
+    }).catch(function(){
+      submitBtn.disabled = false;
+      submitBtn.textContent = btnLabel;
+      errBox.style.display = "block";
+      errBox.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
   });
 })();
 </script>

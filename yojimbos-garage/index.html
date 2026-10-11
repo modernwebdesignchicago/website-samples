@@ -524,7 +524,11 @@
           <span class="error-msg">Tell us a bit about the issue (at least 10 characters).</span>
         </div>
       </div>
+      <div aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden">
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off">
+      </div>
       <button type="submit" class="btn btn-red" style="width:100%">Request Drop-Off</button>
+      <p id="submitError" role="alert" style="display:none;color:#ff6b6e;margin-top:12px">Something went wrong sending that. Please call the shop at (312) 555-0147 instead.</p>
       <p style="color:var(--muted);font-size:13px;margin-top:12px">No spam, no mailing list. We only use your number to confirm your drop-off.</p>
     </form>
     <div id="form-success" role="status">
@@ -690,11 +694,43 @@
       return;
     }
     var name = form.elements['name'].value.trim();
-    document.getElementById('success-detail').textContent =
-      'Thanks, ' + name + '! We got your drop-off request and will text you within the hour to confirm a time.';
-    form.style.display = 'none';
-    success.classList.add('show');
-    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    var phone = form.elements['phone'].value.trim();
+    var bikeType = form.elements['bikeType'].value;
+    var issue = form.elements['issue'].value.trim();
+
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var btnLabel = submitBtn.textContent;
+    var errBox = document.getElementById('submitError');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    errBox.style.display = 'none';
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: '737f6d54-95b0-4d0a-8b86-113fe1757216',
+        subject: '[Sample: Spoke & Sprocket] New service booking',
+        from_name: name,
+        botcheck: false,
+        name: name,
+        phone: phone,
+        bikeType: bikeType,
+        issue: issue
+      })
+    }).then(function(res){ return res.json(); }).then(function(data){
+      if (!data || !data.success) { throw new Error('send failed'); }
+      document.getElementById('success-detail').textContent =
+        'Thanks, ' + name + '! We got your drop-off request and will text you within the hour to confirm a time.';
+      form.style.display = 'none';
+      success.classList.add('show');
+      success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }).catch(function(){
+      submitBtn.disabled = false;
+      submitBtn.textContent = btnLabel;
+      errBox.style.display = 'block';
+      errBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
   });
 })();
 </script>
