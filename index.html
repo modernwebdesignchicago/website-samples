@@ -23,6 +23,13 @@
   .tag { display: inline-block; font-size: .72rem; text-transform: uppercase; letter-spacing: 1px; color: #d4d4d8; background: #27272a; border-radius: 20px; padding: 3px 12px; margin-bottom: 12px; }
   footer { margin-top: 64px; color: #71717a; font-size: .85rem; }
   footer a { color: #a1a1aa; }
+  .why { margin-top: 72px; padding: 48px 32px; background: #18181b; border: 1px solid #27272a; border-radius: 14px; }
+  .why h2 { font-size: 1.5rem; letter-spacing: -0.3px; margin-bottom: 32px; max-width: 640px; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-bottom: 32px; }
+  .stat { display: flex; flex-direction: column; gap: 8px; }
+  .stat .num { font-size: 2rem; font-weight: 700; color: #f2f2f2; }
+  .stat .lbl { color: #a1a1aa; font-size: .9rem; }
+  .pitch { color: #d4d4d8; font-size: 1.02rem; max-width: 640px; }
 </style>
 </head>
 <body>
@@ -71,6 +78,15 @@
       </div>
     </a>
   </div>
+  <section class="why">
+    <h2>Your business runs on your work. Your website just needs to not get in the way.</h2>
+    <div class="stats">
+      <div class="stat"><span class="num">97%</span><span class="lbl">of customers look up a local business online before visiting (BrightLocal)</span></div>
+      <div class="stat"><span class="num">75%</span><span class="lbl">judge a business by its website design</span></div>
+      <div class="stat"><span class="num">31%</span><span class="lbl">have skipped a small business because it had no website</span></div>
+    </div>
+    <p class="pitch">You do not need a big digital strategy. You need a site that shows what makes your business special, loads fast, and lets people reach you. We build that for a flat $750, you own it outright, and it takes about a week.</p>
+  </section>
   <footer>
     <p>These are demo sites with fictional business details. <a href="https://github.com/modernwebdesignchicago/website-samples">View the source on GitHub</a>.</p>
   </footer>
