@@ -344,7 +344,7 @@
           <textarea id="notes" name="notes" rows="3" placeholder="Theme, colors, inscription, allergies…"></textarea>
         </div>
         <div aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden">
-          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off">
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off">
         </div>
         <button type="submit" class="submit-btn">Request My Cake</button>
         <p class="submit-error" id="submitError" role="alert" style="display:none;color:#b91c1c;margin-top:12px">Something went wrong sending that. Please call us at (312) 555-0148 instead.</p>
@@ -537,14 +537,15 @@
     submitBtn.textContent = "Sending...";
     errBox.style.display = "none";
 
-    fetch("https://api.web3forms.com/submit", {
+    var honey = form.querySelector('input[name="_honey"]');
+    fetch("https://formsubmit.co/ajax/modern.webdesign.chicago+sample-golden-crust@gmail.com", {
       method: "POST",
       headers: { "Content-Type": "application/json", "Accept": "application/json" },
       body: JSON.stringify({
-        access_key: "6b2f53a2-37d8-4a80-b8b9-747ddfcef37c",
-        subject: "[Sample: Golden Crust Bakery] New cake order inquiry",
-        from_name: result.name,
-        botcheck: false,
+        _subject: "[Sample: Golden Crust Bakery] New cake order inquiry",
+        _template: "table",
+        _autoresponse: "Thanks for reaching out to Golden Crust Bakery. We got your cake request and will call you within one business day to confirm the details.",
+        _honey: honey ? honey.value : "",
         name: result.name,
         phone: result.phone,
         dateNeeded: result.dateVal,
@@ -552,8 +553,7 @@
         flavor: result.flavor,
         notes: result.notes
       })
-    }).then(function(res){ return res.json(); }).then(function(data){
-      if (!data || !data.success) { throw new Error("send failed"); }
+    }).then(function(res){ if (!res.ok) { throw new Error("send failed"); } return res.json(); }).then(function(){
       successText.textContent = "Thanks, " + result.name.split(" ")[0] +
         "! We've got your request for a " + result.size + " (" + result.flavor +
         ") needed by " + niceDate + ". We'll call you within one business day to confirm.";

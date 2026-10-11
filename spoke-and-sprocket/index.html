@@ -525,7 +525,7 @@
         </div>
       </div>
       <div aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden">
-        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off">
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off">
       </div>
       <button type="submit" class="btn btn-red" style="width:100%">Request Drop-Off</button>
       <p id="submitError" role="alert" style="display:none;color:#ff6b6e;margin-top:12px">Something went wrong sending that. Please call the shop at (312) 555-0147 instead.</p>
@@ -705,21 +705,21 @@
     submitBtn.textContent = 'Sending...';
     errBox.style.display = 'none';
 
-    fetch('https://api.web3forms.com/submit', {
+    var honey = form.querySelector('input[name="_honey"]');
+    fetch('https://formsubmit.co/ajax/modern.webdesign.chicago+sample-spoke-sprocket@gmail.com', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
-        access_key: '737f6d54-95b0-4d0a-8b86-113fe1757216',
-        subject: '[Sample: Spoke & Sprocket] New service booking',
-        from_name: name,
-        botcheck: false,
+        _subject: '[Sample: Spoke & Sprocket] New service booking',
+        _template: 'table',
+        _autoresponse: 'Thanks for reaching out to Spoke & Sprocket. We got your drop-off request and will text you within the hour to confirm a time.',
+        _honey: honey ? honey.value : '',
         name: name,
         phone: phone,
         bikeType: bikeType,
         issue: issue
       })
-    }).then(function(res){ return res.json(); }).then(function(data){
-      if (!data || !data.success) { throw new Error('send failed'); }
+    }).then(function(res){ if (!res.ok) { throw new Error('send failed'); } return res.json(); }).then(function(){
       document.getElementById('success-detail').textContent =
         'Thanks, ' + name + '! We got your drop-off request and will text you within the hour to confirm a time.';
       form.style.display = 'none';

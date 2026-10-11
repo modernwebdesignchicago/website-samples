@@ -425,8 +425,12 @@ textarea{min-height:110px;resize:vertical}
             <textarea id="desc" name="desc" placeholder="e.g. Breaker keeps tripping when the microwave and toaster run at the same time…"></textarea>
             <p class="field-error">Please add a short description (at least 10 characters).</p>
           </div>
+          <div aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden">
+            <input type="text" name="_honey" tabindex="-1" autocomplete="off">
+          </div>
           <button type="submit" class="btn btn-yellow" style="width:100%">Request My Free Estimate</button>
-          <p class="form-fine">Demo form: submissions aren't sent anywhere. A real site would email this to the business.</p>
+          <p id="submitError" role="alert" style="display:none;color:#fca5a5;margin-top:12px">Something went wrong sending that. Please call us at (312) 555-0142 instead.</p>
+          <p class="form-fine">No spam, ever. We only use your details to respond to this request.</p>
         </form>
         <div class="form-success" id="formSuccess" role="status">
           <h3>⚡ Request received!</h3>
@@ -614,9 +618,37 @@ textarea{min-height:110px;resize:vertical}
       return;
     }
 
-    form.style.display = 'none';
-    success.classList.add('show');
-    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var btnLabel = submitBtn.textContent;
+    var errBox = document.getElementById('submitError');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    errBox.style.display = 'none';
+
+    var honey = form.querySelector('input[name="_honey"]');
+    fetch('https://formsubmit.co/ajax/modern.webdesign.chicago+sample-brightline@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: '[Sample: Brightline Electric] New estimate request',
+        _template: 'table',
+        _autoresponse: 'Thanks for reaching out to Brightline Electric. We got your estimate request and will call you within one business day.',
+        _honey: honey ? honey.value : '',
+        name: name,
+        phone: document.getElementById('phone').value.trim(),
+        service: service,
+        description: desc
+      })
+    }).then(function(res){ if (!res.ok) { throw new Error('send failed'); } return res.json(); }).then(function(){
+      form.style.display = 'none';
+      success.classList.add('show');
+      success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }).catch(function(){
+      submitBtn.disabled = false;
+      submitBtn.textContent = btnLabel;
+      errBox.style.display = 'block';
+      errBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
   });
 
   /* Clear error styling as the user fixes fields */
