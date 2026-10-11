@@ -502,6 +502,11 @@
           <input type="tel" id="f-phone" name="phone" placeholder="e.g. (312) 555-0188" autocomplete="tel">
           <span class="error-msg">Enter a valid phone number (at least 10 digits).</span>
         </div>
+        <div class="field" data-field="email">
+          <label for="f-email">Email (optional)</label>
+          <input type="email" id="f-email" name="email" placeholder="e.g. alex@example.com" autocomplete="email">
+          <span class="error-msg">Enter a valid email, or leave it blank.</span>
+        </div>
         <div class="field full" data-field="bikeType">
           <label for="f-bike">Bike type *</label>
           <select id="f-bike" name="bikeType">
@@ -664,11 +669,13 @@
     var ok = true;
     var name = form.elements['name'].value.trim();
     var phone = form.elements['phone'].value.trim();
+    var email = form.elements['email'].value.trim();
     var bikeType = form.elements['bikeType'].value;
     var issue = form.elements['issue'].value.trim();
 
     ok = setInvalid('name', name.length < 2) && ok;
     ok = setInvalid('phone', digitsOnly(phone).length < 10) && ok;
+    ok = setInvalid('email', email !== '' && !/.+@.+\..+/.test(email)) && ok;
     ok = setInvalid('bikeType', bikeType === '') && ok;
     ok = setInvalid('issue', issue.length < 10) && ok;
     return ok;
@@ -695,6 +702,7 @@
     }
     var name = form.elements['name'].value.trim();
     var phone = form.elements['phone'].value.trim();
+    var email = form.elements['email'].value.trim();
     var bikeType = form.elements['bikeType'].value;
     var issue = form.elements['issue'].value.trim();
 
@@ -716,10 +724,16 @@
         _honey: honey ? honey.value : '',
         name: name,
         phone: phone,
+        email: email,
         bikeType: bikeType,
         issue: issue
       })
-    }).then(function(res){ if (!res.ok) { throw new Error('send failed'); } return res.json(); }).then(function(){
+    }).then(function(res){
+      if (!res.ok) { throw new Error('send failed'); }
+      return res.json();
+    }).then(function(data){
+      if (!data || !data.success || data.success === 'false' || data.success === false) { throw new Error('submission held'); }
+    }).then(function(){
       document.getElementById('success-detail').textContent =
         'Thanks, ' + name + '! We got your drop-off request and will text you within the hour to confirm a time.';
       form.style.display = 'none';

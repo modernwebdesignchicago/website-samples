@@ -406,6 +406,11 @@ textarea{min-height:110px;resize:vertical}
             <input type="tel" id="phone" name="phone" placeholder="(312) 555-0000" autocomplete="tel">
             <p class="field-error">Please enter a valid 10-digit phone number.</p>
           </div>
+          <div class="field" id="f-email">
+            <label for="email">Email (optional)</label>
+            <input type="email" id="email" name="email" placeholder="jane@example.com" autocomplete="email">
+            <p class="field-error">Please enter a valid email, or leave it blank.</p>
+          </div>
           <div class="field" id="f-service">
             <label for="service">Service needed</label>
             <select id="service" name="service">
@@ -603,12 +608,14 @@ textarea{min-height:110px;resize:vertical}
 
     var name = document.getElementById('name').value.trim();
     var phone = digitsOnly(document.getElementById('phone').value);
+    var email = document.getElementById('email').value.trim();
     var service = document.getElementById('service').value;
     var desc = document.getElementById('desc').value.trim();
 
     var ok = true;
     ok = setValidity('f-name', name.length >= 2) && ok;
     ok = setValidity('f-phone', phone.length === 10) && ok;
+    ok = setValidity('f-email', email === '' || /.+@.+\..+/.test(email)) && ok;
     ok = setValidity('f-service', service !== '') && ok;
     ok = setValidity('f-desc', desc.length >= 10) && ok;
 
@@ -636,10 +643,16 @@ textarea{min-height:110px;resize:vertical}
         _honey: honey ? honey.value : '',
         name: name,
         phone: document.getElementById('phone').value.trim(),
+        email: email,
         service: service,
         description: desc
       })
-    }).then(function(res){ if (!res.ok) { throw new Error('send failed'); } return res.json(); }).then(function(){
+    }).then(function(res){
+      if (!res.ok) { throw new Error('send failed'); }
+      return res.json();
+    }).then(function(data){
+      if (!data || !data.success || data.success === 'false' || data.success === false) { throw new Error('submission held'); }
+    }).then(function(){
       form.style.display = 'none';
       success.classList.add('show');
       success.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -652,7 +665,7 @@ textarea{min-height:110px;resize:vertical}
   });
 
   /* Clear error styling as the user fixes fields */
-  ['name', 'phone', 'service', 'desc'].forEach(function (id) {
+  ['name', 'phone', 'email', 'service', 'desc'].forEach(function (id) {
     var el = document.getElementById(id);
     var evt = el.tagName === 'SELECT' ? 'change' : 'input';
     el.addEventListener(evt, function () {

@@ -307,6 +307,11 @@
           <input type="tel" id="phone" name="phone" placeholder="(312) 555-0148" autocomplete="tel">
           <p class="error-msg">Please enter a valid phone number (at least 7 digits).</p>
         </div>
+        <div class="field" id="f-email">
+          <label for="email">Email (optional)</label>
+          <input type="email" id="email" name="email" placeholder="jane@example.com" autocomplete="email">
+          <p class="error-msg">Please enter a valid email address, or leave it blank.</p>
+        </div>
         <div class="form-row">
           <div class="field" id="f-date">
             <label for="dateNeeded">Date needed</label>
@@ -487,6 +492,7 @@
     var ok = true;
     var name = document.getElementById("name").value.trim();
     var phone = document.getElementById("phone").value.trim();
+    var email = document.getElementById("email").value.trim();
     var dateVal = document.getElementById("dateNeeded").value;
     var size = document.getElementById("size").value;
     var flavor = document.getElementById("flavor").value;
@@ -495,6 +501,7 @@
 
     var digits = phone.replace(/\D/g, "");
     ok = setInvalid("f-phone", digits.length < 7) && ok;
+    ok = setInvalid("f-email", email !== "" && !/.+@.+\..+/.test(email)) && ok;
 
     var dateOk = false;
     if (dateVal) {
@@ -509,7 +516,7 @@
     ok = setInvalid("f-size", size === "") && ok;
     ok = setInvalid("f-flavor", flavor === "") && ok;
 
-    return { ok: ok, name: name, phone: phone, dateVal: dateVal, size: size, flavor: flavor,
+    return { ok: ok, name: name, phone: phone, email: email, dateVal: dateVal, size: size, flavor: flavor,
              notes: document.getElementById("notes").value.trim() };
   }
 
@@ -548,12 +555,18 @@
         _honey: honey ? honey.value : "",
         name: result.name,
         phone: result.phone,
+        email: result.email,
         dateNeeded: result.dateVal,
         size: result.size,
         flavor: result.flavor,
         notes: result.notes
       })
-    }).then(function(res){ if (!res.ok) { throw new Error("send failed"); } return res.json(); }).then(function(){
+    }).then(function(res){
+      if (!res.ok) { throw new Error("send failed"); }
+      return res.json();
+    }).then(function(data){
+      if (!data || !data.success || data.success === "false" || data.success === false) { throw new Error("submission held"); }
+    }).then(function(){
       successText.textContent = "Thanks, " + result.name.split(" ")[0] +
         "! We've got your request for a " + result.size + " (" + result.flavor +
         ") needed by " + niceDate + ". We'll call you within one business day to confirm.";
