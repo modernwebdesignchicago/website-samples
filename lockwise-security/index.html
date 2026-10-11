@@ -435,6 +435,10 @@
           <span class="err">Please pick an urgency level.</span>
         </div>
         <button type="submit" class="btn btn-call" style="width:100%;justify-content:center">Request a Callback</button>
+        <div aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden">
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off">
+        </div>
+        <p id="submitError" role="alert" style="display:none;color:#b91c1c;margin-top:12px">Something went wrong sending that. Please call (312) 555-0147 instead.</p>
         <div id="formSuccess" role="status" aria-live="polite">
           <h3>Request received!</h3>
           <p id="formSuccessMsg">Thanks. We&rsquo;ll call you back shortly.</p>
@@ -609,12 +613,39 @@
     var serviceLabel = document.getElementById('fService')
       .options[document.getElementById('fService').selectedIndex].text;
 
-    successMsg.textContent = 'Thanks, ' + name + '. We\u2019ll call ' + phone +
-      ' ' + urgencyLabel + ' about your ' + serviceLabel.toLowerCase() + '. ' +
-      'In a real hurry? Call (312) 555-0147 now.';
-    successBox.style.display = 'block';
-    successBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    form.querySelector('button[type="submit"]').disabled = false;
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var btnLabel = submitBtn.textContent;
+    var errBox = document.getElementById('submitError');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    errBox.style.display = 'none';
+
+    var honey = form.querySelector('input[name="_honey"]');
+    fetch('https://formsubmit.co/ajax/modern.webdesign.chicago+sample-lockwise@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: '[Sample: Lockwise Security] New service request',
+        _template: 'table',
+        _autoresponse: 'Thanks for reaching out to Lockwise Security. We got your request and will call you back shortly.',
+        _honey: honey ? honey.value : '',
+        name: name,
+        phone: phone,
+        service: serviceLabel,
+        urgency: urgencyLabel
+      })
+    }).then(function(res){ if (!res.ok) { throw new Error('send failed'); } return res.json(); }).then(function(){
+      successMsg.textContent = 'Thanks, ' + name + '. We\u2019ll call ' + phone +
+        ' ' + urgencyLabel + ' about your ' + serviceLabel.toLowerCase() + '. ' +
+        'In a real hurry? Call (312) 555-0147 now.';
+      successBox.style.display = 'block';
+      successBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }).catch(function(){
+      submitBtn.disabled = false;
+      submitBtn.textContent = btnLabel;
+      errBox.style.display = 'block';
+      errBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
   });
 
   // Clear a field's error state as the user fixes it

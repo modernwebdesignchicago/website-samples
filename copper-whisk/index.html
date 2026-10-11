@@ -483,7 +483,11 @@
             <label for="cf-notes">Tell us about the event</label>
             <textarea id="cf-notes" name="notes" placeholder="Wedding reception, outdoor tent, nut allergy in the family…"></textarea>
           </div>
+          <div aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden">
+            <input type="text" name="_honey" tabindex="-1" autocomplete="off">
+          </div>
           <button type="submit" class="btn btn-gold" style="width:100%">Send Inquiry</button>
+          <p id="submitError" role="alert" style="display:none;color:#b91c1c;margin-top:12px">Something went wrong sending that. Please call us at (708) 555-0142 instead.</p>
         </form>
         <div class="form-success" id="formSuccess" role="status">
           <div class="big-check">&#10003;</div>
@@ -671,11 +675,41 @@
       return;
     }
 
-    var firstName = name.value.trim().split(' ')[0];
-    successMsg.textContent = 'Thanks, ' + firstName + '. We\u2019ll be in touch within one business day about your event.';
-    form.style.display = 'none';
-    success.classList.add('show');
-    success.scrollIntoView({behavior:'smooth', block:'center'});
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var btnLabel = submitBtn.textContent;
+    var errBox = document.getElementById('submitError');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    errBox.style.display = 'none';
+
+    var payload = {
+      _subject: '[Sample: The Copper Whisk] New catering inquiry',
+      _template: 'table',
+      _autoresponse: 'Thanks for reaching out to The Copper Whisk. We got your catering inquiry and will be in touch within one business day.',
+      _honey: (function(){ var h = form.querySelector('input[name="_honey"]'); return h ? h.value : ''; })(),
+      name: name.value.trim(),
+      contact: contact.value.trim(),
+      date: date.value,
+      guests: guests.value,
+      notes: document.getElementById('cf-notes').value.trim()
+    };
+    var firstName = payload.name.split(' ')[0];
+
+    fetch('https://formsubmit.co/ajax/modern.webdesign.chicago+sample-copper-whisk@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function(res){ if (!res.ok) { throw new Error('send failed'); } return res.json(); }).then(function(){
+      successMsg.textContent = 'Thanks, ' + firstName + '. We\u2019ll be in touch within one business day about your event.';
+      form.style.display = 'none';
+      success.classList.add('show');
+      success.scrollIntoView({behavior:'smooth', block:'center'});
+    }).catch(function(){
+      submitBtn.disabled = false;
+      submitBtn.textContent = btnLabel;
+      errBox.style.display = 'block';
+      errBox.scrollIntoView({behavior:'smooth', block:'center'});
+    });
   });
 
   /* Live-clear errors as the user fixes fields */
