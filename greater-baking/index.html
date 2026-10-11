@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Golden Crust Bakery &mdash; Artisan Bakery in South Shore, Chicago</title>
-<meta name="description" content="Golden Crust Bakery — a neighborhood artisan bakery in South Shore, Chicago. Fresh breads, pastries, and custom cakes baked daily.">
+<title>Golden Crust Bakery | Bakery in South Shore, Chicago</title>
+<meta name="description" content="Golden Crust Bakery, a neighborhood bakery in South Shore, Chicago. Breads, pastries, and custom cakes baked daily.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap" rel="stylesheet">
@@ -37,7 +37,7 @@
 
   /* ---------- Nav ---------- */
   .nav{
-    position:sticky;top:0;z-index:50;
+    position:sticky;top:0;z-index:100;
     background:rgba(250,243,231,.96);
     backdrop-filter:blur(8px);
     border-bottom:2px solid var(--cream-dark);
@@ -189,6 +189,8 @@
     .nav{position:sticky}
   }
   @media (max-width:520px){
+    .brand{font-size:1.15rem}
+    .tab{padding:.7rem 1.3rem}
     .form-row{grid-template-columns:1fr}
     .form-card{padding:1.5rem 1.2rem}
     section{padding:3rem 1rem}
@@ -203,7 +205,7 @@
 <nav class="nav" aria-label="Main navigation">
   <div class="nav-inner">
     <!-- CMS-EDITABLE: business name -->
-    <a class="brand" href="#top">Greater <span>Baking</span></a>
+    <a class="brand" href="#top">Golden <span>Crust Bakery</span></a>
     <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
       <span class="bar"></span><span class="bar"></span><span class="bar"></span>
     </button>
@@ -223,8 +225,8 @@
     <div>
       <!-- CMS-EDITABLE: hero headline + intro + CTAs -->
       <span class="eyebrow">South Shore &middot; Chicago</span>
-      <h1>Baked fresh every morning, <em>the old way.</em></h1>
-      <p class="lede">Sourdough loaves, flaky pastries, and celebration cakes made from scratch in the heart of Chicago's South Shore neighborhood. No shortcuts, no mixes &mdash; just flour, butter, and patience.</p>
+      <h1>Baked fresh every morning.</h1>
+      <p class="lede">Sourdough loaves, flaky pastries, and celebration cakes made from scratch in Chicago's South Shore neighborhood. No mixes, no shortcuts.</p>
       <div class="btn-row">
         <a class="btn btn-primary" href="#custom">Order a Custom Cake</a>
         <a class="btn btn-secondary" href="#menu">See the Menu</a>
@@ -237,9 +239,9 @@
         <li><span>Sourdough Boule</span><span class="price">$8</span></li>
         <li><span>Butter Croissant</span><span class="price">$4.50</span></li>
         <li><span>Cinnamon Morning Bun</span><span class="price">$5</span></li>
-        <li><span>Slice of the Day &mdash; Carrot Cake</span><span class="price">$6</span></li>
+        <li><span>Slice of the Day: Carrot Cake</span><span class="price">$6</span></li>
       </ul>
-      <p class="note">Baked at 5 AM daily &mdash; when it's gone, it's gone.</p>
+      <p class="note">Baked at 5 AM daily. When it's gone, it's gone.</p>
     </div>
   </div>
 </header>
@@ -258,10 +260,10 @@
     <!-- CMS-EDITABLE: breads menu -->
     <div class="menu-grid menu-category active" id="cat-breads">
       <div class="menu-item"><div class="item-head"><h3>Sourdough Boule</h3><span class="price">$8</span></div><p>48-hour fermented, stone-milled flour, crackling crust.</p><span class="tag">Bestseller</span></div>
-      <div class="menu-item"><div class="item-head"><h3>Rye &amp; Caraway Loaf</h3><span class="price">$7.50</span></div><p>Dark, chewy, and tangy &mdash; a South Side classic.</p></div>
+      <div class="menu-item"><div class="item-head"><h3>Rye &amp; Caraway Loaf</h3><span class="price">$7.50</span></div><p>Dark, chewy, and tangy. A South Side classic.</p></div>
       <div class="menu-item"><div class="item-head"><h3>Honey Oat Sandwich Loaf</h3><span class="price">$7</span></div><p>Soft-crumbed and lightly sweetened with local honey.</p></div>
       <div class="menu-item"><div class="item-head"><h3>Rosemary Focaccia</h3><span class="price">$9</span></div><p>Olive-oil crisped, topped with flaky sea salt.</p></div>
-      <div class="menu-item"><div class="item-head"><h3>Baguette (pair)</h3><span class="price">$6</span></div><p>Baked twice daily &mdash; morning and 3 PM.</p></div>
+      <div class="menu-item"><div class="item-head"><h3>Baguette (pair)</h3><span class="price">$6</span></div><p>Baked twice daily: morning and 3 PM.</p></div>
       <div class="menu-item"><div class="item-head"><h3>Cinnamon Swirl Loaf</h3><span class="price">$8.50</span></div><p>Weekend-only brioche swirled with Saigon cinnamon.</p><span class="tag">Weekends</span></div>
     </div>
 
@@ -277,12 +279,12 @@
 
     <!-- CMS-EDITABLE: custom cakes menu -->
     <div class="menu-grid menu-category" id="cat-cakes">
-      <div class="menu-item"><div class="item-head"><h3>Celebration Cake &mdash; 8"</h3><span class="price">from $55</span></div><p>Serves 12&ndash;16. Any flavor, buttercream finish.</p></div>
-      <div class="menu-item"><div class="item-head"><h3>Celebration Cake &mdash; 10"</h3><span class="price">from $75</span></div><p>Serves 20&ndash;28. Fondant or buttercream.</p></div>
+      <div class="menu-item"><div class="item-head"><h3>Celebration Cake, 8-inch</h3><span class="price">from $55</span></div><p>Serves 12&ndash;16. Any flavor, buttercream finish.</p></div>
+      <div class="menu-item"><div class="item-head"><h3>Celebration Cake, 10-inch</h3><span class="price">from $75</span></div><p>Serves 20&ndash;28. Fondant or buttercream.</p></div>
       <div class="menu-item"><div class="item-head"><h3>Two-Tier Showpiece</h3><span class="price">from $140</span></div><p>Serves 30&ndash;40. Custom design consultation included.</p><span class="tag">Popular</span></div>
-      <div class="menu-item"><div class="item-head"><h3>Sheet Cake &mdash; Half</h3><span class="price">from $60</span></div><p>Serves 24. Simple message inscription included.</p></div>
+      <div class="menu-item"><div class="item-head"><h3>Half Sheet Cake</h3><span class="price">from $60</span></div><p>Serves 24. Simple message inscription included.</p></div>
       <div class="menu-item"><div class="item-head"><h3>Cupcakes (dozen)</h3><span class="price">$36</span></div><p>Mix up to two flavors per dozen.</p></div>
-      <div class="menu-item"><div class="item-head"><h3>Hand-Piped Details</h3><span class="price">+$15&ndash;$45</span></div><p>Fresh florals, gold leaf, painted fondant &mdash; priced by design.</p></div>
+      <div class="menu-item"><div class="item-head"><h3>Hand-Piped Details</h3><span class="price">+$15&ndash;$45</span></div><p>Fresh florals, gold leaf, painted fondant. Priced by design.</p></div>
     </div>
   </div>
 </section>
@@ -291,7 +293,7 @@
   <div class="wrap">
     <!-- CMS-EDITABLE: cake form heading -->
     <h2 class="section-title">Order a Custom Cake</h2>
-    <p class="section-sub">Tell us what you're dreaming up. We'll call you within one business day to confirm details &mdash; please order at least 72 hours ahead.</p>
+    <p class="section-sub">Tell us what you need. We'll call you within one business day to confirm. Please order at least 72 hours ahead.</p>
     <div class="form-card">
       <form id="cakeForm" novalidate>
         <!-- CMS-EDITABLE: form fields -->
@@ -357,23 +359,23 @@
   <div class="wrap">
     <!-- CMS-EDITABLE: story heading -->
     <h2 class="section-title">Our Story</h2>
-    <p class="section-sub">A neighborhood bakery &mdash; this is where your story goes.</p>
+    <p class="section-sub">A neighborhood bakery. This is where your story goes.</p>
     <div class="story-grid">
       <div>
         <!-- CMS-EDITABLE: heritage story copy -->
         <h3>From our ovens to your table</h3>
-        <p>Every shop has a story &mdash; this is where yours goes. Who started the bakery, and why? What do you believe about bread? Two or three honest paragraphs beat a polished novel.</p>
+        <p>Every shop has a story. This is where yours goes. Who started the bakery, and why? What do you believe about bread? Two or three honest paragraphs beat a polished novel.</p>
         <p>This space is a placeholder for the day-to-day: what you bake, how you bake it, and what makes a regular come back every week.</p>
         <p>When this becomes your site, your real story replaces every word here.</p>
       </div>
       <div>
         <div class="story-stats">
           <!-- CMS-EDITABLE: stats -->
-          <div class="stat"><span class="num">&mdash;</span><span class="lbl">Years in business</span></div>
-          <div class="stat"><span class="num">&mdash;</span><span class="lbl">Bakes each day</span></div>
-          <div class="stat"><span class="num">&mdash;</span><span class="lbl">Happy regulars</span></div>
+          <div class="stat"><span class="num">&ndash;</span><span class="lbl">Years in business</span></div>
+          <div class="stat"><span class="num">&ndash;</span><span class="lbl">Bakes each day</span></div>
+          <div class="stat"><span class="num">&ndash;</span><span class="lbl">Happy regulars</span></div>
         </div>
-        <p style="margin-top:1.4rem;color:#c9b18e;font-style:italic">&ldquo;Sample review &mdash; your best customer quote goes here.&rdquo;</p>
+        <p style="margin-top:1.4rem;color:#c9b18e;font-style:italic">&ldquo;Sample review: your best customer quote goes here.&rdquo;</p>
       </div>
     </div>
   </div>
@@ -383,7 +385,7 @@
   <div class="wrap">
     <!-- CMS-EDITABLE: visit heading -->
     <h2 class="section-title">Hours &amp; Location</h2>
-    <p class="section-sub">Come say hi &mdash; the coffee's always on.</p>
+    <p class="section-sub">Come say hi. The coffee's always on.</p>
     <div class="visit-grid">
       <div class="info-card">
         <!-- CMS-EDITABLE: hours -->
@@ -404,7 +406,7 @@
           hello@goldencrustbakery.example.com
         </address>
         <div class="map-placeholder" aria-hidden="true">
-          Map placeholder &mdash; 7420 S. Marigold Ave, South Shore, Chicago
+          Map placeholder: 7420 S. Marigold Ave, South Shore, Chicago
         </div>
       </div>
     </div>
@@ -415,7 +417,7 @@
   <!-- CMS-EDITABLE: footer -->
   <p class="f-brand">Golden Crust Bakery</p>
   <p>7420 S. Marigold Avenue, Chicago, IL 60649 &middot; (312) 555-0148</p>
-  <p class="demo">(demo site &mdash; fictional content)</p>
+  <p class="demo">(demo site, fictional content)</p>
 </footer>
 
 <script>
